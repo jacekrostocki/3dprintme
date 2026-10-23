@@ -14,6 +14,9 @@ const images = {
 	'zastosowania-druku-3d': ['organizery-3d', 'Biurkowy organizer z miejscem na telefon, długopis i drobiazgi'],
 	'druk-3d-male-serie': ['klipsy-3d', 'Uchwyt na przewody USB zamocowany na krawędzi biurka'],
 };
+const articleBodyExtensions = {
+	'pla-petg-tpu': fs.readFileSync('content/pla-petg-tpu-materials.html', 'utf8'),
+};
 
 fs.mkdirSync('public/poradnik', { recursive: true });
 fs.copyFileSync('src/site.css', 'public/site.css');
@@ -23,7 +26,8 @@ const page = (title, description, body) => `<!doctype html><html lang="pl"><head
 for (const article of articles) {
 	const [image, alt] = images[article.slug];
 	const photo = `<img class="article-cover" src="/img/${image}.webp" alt="${escapeHtml(alt)}"><p class="image-disclaimer">Ilustracja poglądowa wygenerowana cyfrowo, nie jest zdjęciem realizacji pracowni.</p>`;
-	fs.writeFileSync(`public/poradnik/${article.slug}.html`, page(article.title, article.description, photo + article.body));
+	const body = article.body + (articleBodyExtensions[article.slug] || '');
+	fs.writeFileSync(`public/poradnik/${article.slug}.html`, page(article.title, article.description, photo + body));
 }
 
 const articleList = articles.map(article => {
