@@ -1,0 +1,64 @@
+import React, { useState } from "react";
+import { company } from "./config";
+
+const services = [
+ ["01", "Druk z gotowego pliku", "Masz model STL, 3MF lub OBJ? Prześlij go wraz z liczbą sztuk i opisem zastosowania. Sprawdzimy możliwość wykonania i przygotujemy wycenę."],
+ ["02", "Prototypy i przymiarki", "Sprawdź kształt, dopasowanie i ergonomię przed kolejnym etapem projektu. Druk 3D pozwala pracować nad kolejnymi wersjami części."],
+ ["03", "Części użytkowe i małe serie", "Uchwyty, organizery, obudowy, adaptery i elementy do własnych projektów. Pojedyncza sztuka lub powtarzalna seria — zakres ustalamy na podstawie modelu."],
+];
+const articles = [
+ ["jak-przygotowac-plik", "PRZYGOTOWANIE MODELU", "Jak przygotować plik do druku 3D?", "Format, wymiary i informacje, które ułatwiają wycenę."],
+ ["pla-petg-tpu", "MATERIAŁY", "PLA, PETG czy TPU?", "Dobierz materiał do warunków, w których będzie pracować część."],
+ ["ile-kosztuje-druk-3d", "WYCENA", "Od czego zależy koszt druku 3D?", "Dlaczego masa modelu to tylko jeden z elementów ceny."],
+ ["zastosowania-druku-3d", "INSPIRACJE", "Co można wydrukować w 3D?", "Praktyczne przykłady części i akcesoriów na zamówienie."],
+ ["druk-3d-male-serie", "PRODUKCJA", "Druk 3D małych serii", "Kiedy produkcja krótkiej serii metodą FDM ma sens?"],
+];
+const testimonials = [
+ { name: "Michał", text: "Potrzebowałem niewielkiego elementu do naprawy sprzętu, którego nie dało się już kupić. Część została wydrukowana zgodnie z wymiarami i pasowała bez problemu." },
+ { name: "Tomasz", text: "Zleciłem wydruk prototypu obudowy do projektu elektronicznego. Dobra jakość wykonania, rozsądna cena i sprawna komunikacja. Dokładnie tego potrzebowałem." },
+ { name: "Anna", text: "Zamówiłam kilka organizerów i uchwytów na wymiar. Wszystko wygląda estetycznie i świetnie sprawdza się na co dzień. Fajna alternatywa dla gotowych produktów." },
+ { name: "Paweł", text: "Potrzebowaliśmy kilkunastu identycznych elementów do naszego projektu. Realizacja przebiegła sprawnie, a wszystkie wydruki były zgodne z zamówieniem." },
+ { name: "Kamil", text: "Wysłałem gotowy plik STL i szybko dostałem wycenę. Wydruk dotarł dobrze zabezpieczony, jakość bardzo dobra. Na pewno skorzystam ponownie." },
+ { name: "Katarzyna", text: "Miałam pomysł na nietypowy uchwyt, ale nie wiedziałam, czy da się go wykonać. Udało się dobrać odpowiednie rozwiązanie i efekt spełnił moje oczekiwania." },
+];
+const articleImages: Record<string, { file: string; alt: string }> = {
+ "jak-przygotowac-plik": { file: "czesci-techniczne-3d", alt: "Koło zębate i uchwyt wykonane w technologii druku 3D" },
+ "pla-petg-tpu": { file: "odbojniki-3d", alt: "Wydrukowany dystans przy kółku meblowym" },
+ "ile-kosztuje-druk-3d": { file: "mechanizmy-3d", alt: "Mechanizm z kół zębatych wykonany w druku 3D" },
+ "zastosowania-druku-3d": { file: "organizery-3d", alt: "Biurkowy organizer z miejscem na telefon, długopis i drobiazgi" },
+ "druk-3d-male-serie": { file: "klipsy-3d", alt: "Uchwyt na przewody USB zamocowany na krawędzi biurka" },
+};
+
+export default function App() {
+ const [menu, setMenu] = useState(false);
+ const [testimonialsPaused, setTestimonialsPaused] = useState(false);
+ const [status, setStatus] = useState("");
+ const [sending, setSending] = useState(false);
+ async function submit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault(); const form = e.currentTarget; const data = new FormData(form); setStatus("");
+  const file = data.get("file") as File | null;
+  if (file && file.size > 20 * 1024 * 1024) { setStatus("Plik jest za duży. Limit wynosi 20 MB. Prześlij link do pliku w opisie."); return; }
+  if (company.formEndpoint) {
+   setSending(true);
+   try { const res = await fetch(company.formEndpoint, {method: "POST", body: data}); if (!res.ok) throw new Error(); setStatus("Zapytanie zostało wysłane. Dziękujemy!"); form.reset(); }
+   catch { setStatus("Nie udało się wysłać zapytania. Spróbuj ponownie lub skontaktuj się bezpośrednio e-mailem."); }
+   finally { setSending(false); }
+  } else if (company.email) {
+   const body = `Imię: ${data.get("name")}\nE-mail: ${data.get("email")}\n\n${data.get("message")}\n\nPamiętaj o dołączeniu pliku do tej wiadomości.`;
+   window.location.href = `mailto:${company.email}?subject=${encodeURIComponent("Zapytanie o druk 3D")}&body=${encodeURIComponent(body)}`;
+   setStatus("Otwarto program pocztowy. Dołącz plik i wyślij wiadomość w poczcie. Strona nie wysłała zapytania.");
+  } else setStatus("Kontakt nie jest jeszcze skonfigurowany. Właściciel strony musi uzupełnić adres e-mail przed publikacją.");
+ }
+ return <>
+ <a className="skip" href="#main">Przejdź do treści</a>
+ <header className="header wrap"><a className="brand" href="/" aria-label="Strona główna"><span className="brand-icon">3D</span><span>{company.name}</span></a><button className="menu-toggle" aria-expanded={menu} aria-controls="navigation" onClick={()=>setMenu(!menu)}>{menu ? "Zamknij" : "Menu"}</button><nav id="navigation" className={menu ? "open" : ""} aria-label="Główna nawigacja">{[["uslugi","Usługi"],["materialy","Materiały"],["opinie","Opinie"],["poradnik","Poradnik"],["kontakt","Wyceń wydruk"]].map(([id,label])=><a key={id} className={id === "kontakt" ? "button small" : ""} href={`/#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav></header>
+ <main id="main">
+ <section className="hero wrap"><div><p className="eyebrow">DRUK 3D NA ZAMÓWIENIE · KRAKÓW I CAŁA POLSKA</p><h1>Twój pomysł.<br/>Realny <span>kształt.</span></h1><p className="lead">Od gotowego modelu do części, którą możesz wziąć do ręki. Drukujemy prototypy, praktyczne akcesoria i małe serie w technologii FDM. Pracownia w Krakowie, zamówienia z całej Polski.</p><div className="actions"><a className="button" href="#kontakt">Zapytaj o wycenę <span aria-hidden="true">↗</span></a><a className="text-link" href="#uslugi">Poznaj usługi ↓</a></div><p className="fine">Pojedyncze elementy · Prototypy · Małe serie</p></div><figure className="hero-art"><img src="/img/drukarka.svg" alt="Ilustracja drukarki 3D budującej warstwa po warstwie pomarańczowy element"/><figcaption>Od pierwszej warstwy do gotowej części.</figcaption></figure></section>
+ <section className="section wrap" id="uslugi"><p className="eyebrow">CO MOŻEMY WYDRUKOWAĆ?</p><h2>Małe części.<br/>Dużo możliwości.</h2><div className="cards">{services.map(([n,title,text])=><article className="card" key={n}><span className="number">{n}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+ <section className="tint" id="materialy"><div className="section wrap material-layout"><div><p className="eyebrow">MATERIAŁ MA ZNACZENIE</p><h2>Dopasowany do<br/>Twojego projektu.</h2><p>Liczy się nie tylko wygląd. Napisz, czy część będzie pracować pod obciążeniem, na zewnątrz lub w podwyższonej temperaturze. Dostępność materiału i koloru potwierdzamy przy wycenie.</p><a className="text-link" href="/poradnik/pla-petg-tpu.html">Porównaj materiały ↗</a></div><div className="materials">{[["PLA","Modele i prototypy","Do modeli wizualnych, dekoracji i przymiarek w warunkach pokojowych."],["PETG","Elementy użytkowe","Do obudów, uchwytów i akcesoriów, gdy potrzebna jest większa odporność niż w PLA."],["TPU","Elastyczne detale","Do odbojników, osłon i elementów wymagających ugięcia. Twardość dobieramy do zastosowania."]].map(([name,title,text])=><div className="material" key={name}><strong>{name}</strong><div><h3>{title}</h3><p>{text}</p></div></div>)}</div></div></section>
+ <section className="section wrap note"><span className="eyebrow">MAŁA PRACOWNIA. KONKRETNE PODEJŚCIE.</span><h2>Opowiedz, do czego<br/>potrzebujesz tej części.</h2><p>Rozwijamy lokalną pracownię druku 3D w Krakowie. Stawiamy na konkurencyjne wyceny, również dla pojedynczych sztuk i małych serii. Zależy nam na praktycznych rozwiązaniach i bezpośrednim kontakcie. Możesz przesłać gotowy model lub opisać pomysł — ocenimy, co jest potrzebne, aby przejść do realizacji.</p></section>
+ <section className="tint" id="opinie"><div className="section wrap"><div className="section-top"><div><p className="eyebrow">OPINIE KLIENTÓW</p><h2>Doświadczenia z realizacji.</h2></div><button className="testimonial-toggle" type="button" aria-pressed={testimonialsPaused} onClick={()=>setTestimonialsPaused(!testimonialsPaused)}>{testimonialsPaused ? "Wznów przewijanie" : "Zatrzymaj przewijanie"}</button></div><div className="testimonial-viewport" role="region" aria-label="Opinie klientów" tabIndex={0}><div className={`testimonial-track${testimonialsPaused ? " is-paused" : ""}`} aria-live="off"><div className="testimonial-group">{testimonials.map(({name,text})=><figure className="card testimonial-card" key={name}><blockquote>{text}</blockquote><figcaption>{name}</figcaption></figure>)}</div><div className="testimonial-group" aria-hidden="true">{testimonials.map(({name,text})=><figure className="card testimonial-card" key={`copy-${name}`}><blockquote>{text}</blockquote><figcaption>{name}</figcaption></figure>)}</div></div></div></div></section>
+ <section className="section wrap" id="poradnik"><div className="section-top"><div><p className="eyebrow">WARTO WIEDZIEĆ</p><h2>Przed pierwszym wydrukiem.</h2></div><a className="text-link" href="/poradnik/">Wszystkie artykuły ↗</a></div><div className="cards">{articles.map(([slug,tag,title,text])=><article className="card article" key={slug}><a href={`/poradnik/${slug}.html`}><img className="article-image" src={`/img/${articleImages[slug].file}.webp`} alt={articleImages[slug].alt} loading="lazy"/></a><span className="eyebrow">{tag}</span><h3><a href={`/poradnik/${slug}.html`}>{title}</a></h3><p>{text}</p><a className="text-link" href={`/poradnik/${slug}.html`}>Czytaj artykuł ↗</a></article>)}</div></section>
+ <section className="tint" id="kontakt"><div className="section wrap contact"><div><p className="eyebrow">ZACZNIJMY OD TWOJEGO PROJEKTU</p><h2>Co chcesz<br/>wydrukować?</h2><p>Podaj wymiary, liczbę sztuk i zastosowanie. Jeśli masz model, dołącz go do zapytania. Termin, materiał i cenę potwierdzimy po sprawdzeniu projektu.</p>{company.email && <p><a className="text-link" href={`mailto:${company.email}`}>{company.email}</a></p>}{company.phone && <p><a href={`tel:${company.phone.replace(/\s/g,"")}`}>{company.phone}</a></p>}<p className="fine">Wydruki FDM mają widoczne warstwy. Dopasowanie i wytrzymałość zależą od projektu, materiału i kierunku druku. Elementy do zastosowań krytycznych wymagają odrębnej oceny.</p></div><form onSubmit={submit}><label htmlFor="name">Imię<input id="name" name="name" autoComplete="given-name" required maxLength={100}/></label><label htmlFor="email">Adres e-mail<input id="email" name="email" type="email" autoComplete="email" required maxLength={200}/></label><label htmlFor="message">Opisz projekt<textarea id="message" name="message" required minLength={10} maxLength={6000} rows={5} placeholder="Co drukujemy? Jakie wymiary, liczba sztuk i zastosowanie?"/></label>{company.formEndpoint && <label htmlFor="file">Plik modelu — opcjonalnie, do 20 MB<input id="file" type="file" name="file" accept=".stl,.3mf,.obj,.step,.stp,.zip"/></label>}<p className="fine">{company.formEndpoint ? "Przesłane dane służą do obsługi Twojego zapytania." : "Formularz otworzy program pocztowy. Plik modelu dołączysz bezpośrednio w wiadomości e-mail."} <a href="/prywatnosc.html">Informacje o prywatności</a></p><button className="button" disabled={sending} type="submit">{sending ? "Wysyłanie…" : company.formEndpoint ? "Wyślij zapytanie ↗" : "Przygotuj wiadomość ↗"}</button><p role="status" aria-live="polite">{status}</p></form></div></section>
+ </main><footer className="wrap footer"><a className="brand" href="/">{company.name}</a><span>Druk 3D · {company.location}</span><a href="/prywatnosc.html">Prywatność</a><span>© {new Date().getFullYear()}</span></footer></>;
+}
