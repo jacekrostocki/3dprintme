@@ -5,6 +5,33 @@
   padding-top: 18px;
 }
 
+.footer-quicklinks {
+  flex: 0 0 100%;
+  width: 100%;
+  border-top: 1px solid #e3e5f1;
+  padding-top: 18px;
+}
+
+.footer-quicklinks h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.footer-quicklinks nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px 22px;
+  font-size: 14px;
+}
+
+.footer-quicklinks nav a {
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .footer-resources h2 {
   margin: 0 0 12px;
   font-size: 16px;
@@ -28,4 +55,11 @@
   width: 104px;
   height: 104px;
   object-fit: contain;
+}
+
+@media (max-width: 650px) {
+  .footer-quicklinks nav {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
