@@ -1,6 +1,6 @@
 // Uzupełnij przed publikacją. Puste dane nie są wyświetlane jako fikcyjne kontakty.
 export const company = {
-  name: "Twoja pracownia 3D",
+  name: "3DPrintMe",
   email: "kontakt.3dprintme@gmail.com",
   phone: "",
   location: "Kraków",
