@@ -22,6 +22,7 @@ const articleBodyExtensions = {
 fs.mkdirSync('public/poradnik', { recursive: true });
 fs.copyFileSync('src/site.css', 'public/site.css');
 fs.copyFileSync('content/LOGO.png', 'public/img/logo.png');
+fs.copyFileSync('content/privacy.html', 'public/prywatnosc.html');
 
 const page = (title, description, body) => `<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} | 3DPrintMe</title><meta name="description" content="${escapeHtml(description)}"><meta property="og:locale" content="pl_PL"><meta property="og:type" content="article"><meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/site.css"><link rel="icon" href="/img/logo.png" type="image/png"></head><body><main class="wrap"><article class="prose"><a class="back" href="/">← Strona główna</a><p class="eyebrow">PORADNIK DRUKU 3D</p><h1>${escapeHtml(title)}</h1>${body}<p><a class="button" href="/#kontakt">Zapytaj o swój projekt ↗</a></p><p><a class="text-link" href="/poradnik/">Wszystkie artykuły</a></p></article></main></body></html>`;
 
