@@ -1,0 +1,65 @@
+{
+  "notes": "Adresy są propozycją. Jeśli istnieją podobne podstrony, aktualizuj istniejący URL albo wdroż 301; sprawdź poprawne canonical. Nie publikuj unpublished draft.",
+  "pages": [
+    {
+      "path": "/",
+      "title": "Druk 3D Kraków na zamówienie | Części i prototypy – 3DPrintMe",
+      "description": "Druk 3D na zamówienie w Krakowie. Prototypy, uchwyty, obudowy, części zamienne i krótkie serie z PLA, PETG i TPU. Wyślij projekt do wyceny."
+    },
+    {
+      "path": "/realizacje/",
+      "title": "Realizacje druku 3D w Krakowie | 3DPrintMe",
+      "description": "Poznaj dokumentowane projekty druku 3D, w tym autorski odbojnik z TPU do wózka IKEA RÅSKOG."
+    },
+    {
+      "path": "/realizacje/odbojnik-ikea-raskog/",
+      "title": "Odbojnik TPU do IKEA RÅSKOG — projekt | 3DPrintMe",
+      "description": "Zobacz proces projektowania i prób dopasowania elastycznego odbojnika do wózka IKEA RÅSKOG."
+    },
+    {
+      "path": "/czesci-zamienne-druk-3d/",
+      "title": "Części zamienne z druku 3D Kraków | 3DPrintMe",
+      "description": "Brakuje uchwytu, osłony lub dystansu? Zapytaj o wykonanie części zamiennej metodą FDM na zamówienie."
+    },
+    {
+      "path": "/prototypowanie-3d/",
+      "title": "Prototypowanie 3D Kraków | 3DPrintMe",
+      "description": "Druk prototypów FDM do sprawdzenia geometrii, ergonomii i dopasowania przed następną iteracją projektu."
+    },
+    {
+      "path": "/druk-3d-male-serie/",
+      "title": "Druk 3D małe serie Kraków | 3DPrintMe",
+      "description": "Druk FDM niewielkich partii części. Wyślij model i zapytaj o możliwość wykonania krótkiej serii."
+    },
+    {
+      "path": "/projektowanie-modeli-3d/",
+      "title": "Projektowanie modeli 3D Kraków | 3DPrintMe",
+      "description": "Nie masz modelu STL? Zapytaj o przygotowanie geometrii na podstawie szkicu lub wymiarów."
+    },
+    {
+      "path": "/wycena/",
+      "title": "Wycena druku 3D Kraków — wyślij plik | 3DPrintMe",
+      "description": "Prześlij plik STL lub opis elementu. Zapytaj o indywidualną wycenę druku 3D z PLA, PETG lub TPU."
+    },
+    {
+      "path": "/kontakt/",
+      "title": "Kontakt — druk 3D w Krakowie | 3DPrintMe",
+      "description": "Skontaktuj się z 3DPrintMe i zapytaj o druk części użytkowej, prototypu albo małej serii."
+    },
+    {
+      "path": "/poradnik/pla-petg-tpu/",
+      "title": "PLA, PETG czy TPU — jaki filament wybrać? | 3DPrintMe",
+      "description": "Poznaj różnice pomiędzy PLA, PETG i TPU. Przykłady zastosowań oraz ograniczenia materiałów w druku FDM."
+    },
+    {
+      "path": "/poradnik/jak-przygotowac-stl/",
+      "title": "Jak przygotować plik STL do druku 3D? | 3DPrintMe",
+      "description": "Lista kontroli pliku STL przed wysłaniem do wyceny: jednostki, skala, szczelność modelu, grubość ścian i pasowania."
+    },
+    {
+      "path": "/poradnik/od-czego-zalezy-cena/",
+      "title": "Ile kosztuje druk 3D? Od czego zależy cena | 3DPrintMe",
+      "description": "Wyjaśniamy, jak materiał, czas druku, geometria, podpory i seria wpływają na indywidualną wycenę."
+    }
+  ]
+}

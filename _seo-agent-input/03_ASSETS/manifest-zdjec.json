@@ -1,0 +1,40 @@
+{
+  "important": "Poprzednie pliki użytkownika; mogą być kolażami lub renderami. Nie opisuj jako nieedytowana fotografia realnego druku. Zgoda i weryfikacja właściciela przed publikacją. Nie publikuj AI w portfolio.",
+  "files": [
+    {
+      "original_path": "03_ASSETS/portfolio_do_weryfikacji/raskog-zestaw-zrodlo.jpg",
+      "optimized_copy": "03_ASSETS/webp_do_weryfikacji/raskog-zestaw-zrodlo.webp",
+      "source_library_file": "IMG_2914.jpeg",
+      "caption_guidance": "Przedstawia planszę produktową / zestaw jasnych elementów i koło; wymaga zatwierdzenia pochodzenia i aktualności.",
+      "verification_status": "requires_owner_confirmation",
+      "image_is_unretouched_single_camera_photo": false,
+      "role": "candidate-product-asset, NOT verified documentary photo",
+      "sha256_original": "8ca046b60f375a5607a86b256d18c22dac2bce65bf61c44097ffdd6ae71bdd2a"
+    },
+    {
+      "original_path": "03_ASSETS/portfolio_do_weryfikacji/raskog-montaz-zrodlo.jpg",
+      "optimized_copy": "03_ASSETS/webp_do_weryfikacji/raskog-montaz-zrodlo.webp",
+      "source_library_file": "IMG_2921.jpeg",
+      "caption_guidance": "Plansza z wydrukowanymi elementami i porównaniem przed/po. NIE jest pojedynczym nieedytowanym zdjęciem.",
+      "verification_status": "requires_owner_confirmation",
+      "image_is_unretouched_single_camera_photo": false,
+      "role": "candidate-product-asset, NOT verified documentary photo",
+      "sha256_original": "fccccdc6d784c934bc8f96d1b0ba5ec2d4ac09035963a65a5c6878a5790bd09f"
+    },
+    {
+      "original_path": "03_ASSETS/portfolio_do_weryfikacji/raskog-przed-po-zrodlo.jpg",
+      "optimized_copy": "03_ASSETS/webp_do_weryfikacji/raskog-przed-po-zrodlo.webp",
+      "source_library_file": "IMG_2922.jpeg",
+      "caption_guidance": "Grafika porównawcza przed/po z etykietami. NIE jest nieedytowanym zdjęciem; można użyć wyłącznie zgodnie z opisem.",
+      "verification_status": "requires_owner_confirmation",
+      "image_is_unretouched_single_camera_photo": false,
+      "role": "candidate-product-asset, NOT verified documentary photo",
+      "sha256_original": "432839e84e9384af60cd8648772952d121b2942ef8f62728413d05fdea8ac6b6"
+    }
+  ],
+  "missing_real_portfolio_photos": [
+    "Nowe zdjęcie telefonu aparatu realnego wydrukowanego odbojnika na neutralnym tle, bez filtrowania.",
+    "Nowe zdjęcie detalu mocowania/warstw rzeczywiście wydrukowanej części.",
+    "Nowe zdjęcie montażu na aktualnym wózku, z niewidocznymi danymi osób i bez ingerencji w produkt."
+  ]
+}

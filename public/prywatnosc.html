@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Polityka prywatności | 3DPrintMe</title>
-  <link rel="icon" href="/img/logo.png" type="image/png">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/footer-links.css">
 </head>
 <body>
   <main class="wrap">
@@ -21,24 +22,32 @@
 
       <h2>Jakie dane przetwarzam i w jakim celu?</h2>
       <p>Jeśli kontaktujesz się w sprawie wyceny, przetwarzam dane, które podasz w wiadomości: imię, adres e-mail, opis projektu, treść korespondencji oraz pliki, które dobrowolnie dołączysz do wysłanego e-maila. Wykorzystuję je, aby odpowiedzieć na zapytanie, ocenić możliwość realizacji i — jeśli zdecydujesz się na zamówienie — obsłużyć umowę.</p>
-      <p>Formularz na stronie otwiera program pocztowy. Strona sama nie wysyła ani nie przechowuje wiadomości; dane trafiają do mnie dopiero po wysłaniu e-maila przez Ciebie. Podanie danych jest dobrowolne, ale adres e-mail i opis projektu są potrzebne do przygotowania odpowiedzi lub wyceny.</p>
+      <p>Przed aktywacją obsługi formularzy online przyciski tworzą szkic wiadomości e-mail — nic nie trafia automatycznie z formularza na serwer. Po uruchomieniu bezpiecznego backendu Firebase formularze kontaktu i wyceny mogą wysyłać dane bezpośrednio: adres e-mail, treść, opcjonalne imię, liczbę sztuk, materiał, sposób odbioru i dobrowolnie przesłany plik modelu lub zdjęcie (maksymalnie 15 MB). Podanie danych jest dobrowolne; adres e-mail i treść wiadomości są niezbędne do udzielenia odpowiedzi.</p>
+      <p>Po aktywacji integracji zapytania są zapisywane w prywatnej bazie Cloud Firestore, a załączniki w prywatnym Cloud Storage. Funkcja Cloud Functions weryfikuje zapytania, a powiadomienia o nich trafiają na adres kontaktowy za pośrednictwem dostawcy e-mail Resend. Formularze online wykorzystują usługę antyspamową Cloudflare Turnstile, która może przetwarzać dane techniczne wymagane do weryfikacji. Przy zwykłym użyciu strony bez wysyłania formularza nie są zbierane pliki do wyceny.</p>
       <p>Podstawą przetwarzania zapytania są działania podejmowane na Twoje żądanie przed zawarciem umowy (art. 6 ust. 1 lit. b RODO). Korespondencję mogę też przechowywać w celu ustalenia, dochodzenia lub obrony roszczeń (art. 6 ust. 1 lit. f RODO). Po zawarciu umowy dane przetwarzam w zakresie potrzebnym do jej wykonania i wypełnienia obowiązków prawnych.</p>
 
       <h2>Hosting, poczta i odbiorcy danych</h2>
-      <p>Strona jest hostowana w Firebase Hosting, a kontaktowy adres e-mail działa w Gmailu — usługi te są dostarczane przez Google. Dostawcy mogą przetwarzać dane techniczne, takie jak adres IP, informacje o przeglądarce i logi serwera, zgodnie ze swoimi warunkami i dokumentami prywatności. Wiadomość e-mail trafia do Google po jej wysłaniu przez Ciebie.</p>
+      <p>Strona jest hostowana w Firebase Hosting, a kontaktowy adres e-mail działa w Gmailu — usługi te są dostarczane przez Google. Dostawcy mogą przetwarzać dane techniczne, takie jak adres IP, informacje o przeglądarce i logi serwera, zgodnie ze swoimi warunkami i dokumentami prywatności. Wiadomość e-mail trafia do Google po jej wysłaniu przez Ciebie; po aktywacji formularzy online w obsłudze zgłoszeń biorą udział również Google Firebase, Resend i Cloudflare.</p>
       <p>Google może przetwarzać dane w Europejskim Obszarze Gospodarczym lub poza nim, zgodnie z mechanizmami opisanymi w dokumentach dostawcy. Odnośniki do Tinkercad, Printables, MakerWorld i Trustpilot prowadzą do niezależnych serwisów, które stosują własne zasady prywatności. Po kliknięciu operator zewnętrznej strony może otrzymać dane techniczne przeglądarki.</p>
 
       <h2>Okres przechowywania</h2>
-      <p>Korespondencję dotyczącą niezrealizowanego zapytania przechowuję przez czas potrzebny do jego obsługi, a następnie tylko wtedy, gdy jest to niezbędne do ustalenia, dochodzenia lub obrony roszczeń. Dane dotyczące zamówień przechowuję przez okres wymagany właściwymi przepisami, w tym podatkowymi i rachunkowymi, jeśli mają zastosowanie.</p>
+      <p>Dane i pliki zgłoszeń wysłanych przez formularz online usuwane są automatycznie z Firestore i Storage po 90 dniach od zgłoszenia (zadanie cykliczne może wykonać usunięcie z niewielkim opóźnieniem). Korespondencję prowadzoną e-mailem oraz dane dotyczące zamówień przechowuję przez okres uzasadniony ich obsługą, obowiązkami prawnymi lub ewentualnymi roszczeniami.</p>
 
       <h2>Twoje prawa</h2>
       <p>Masz prawo żądać dostępu do danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania. W przypadkach przewidzianych przez RODO możesz wnieść sprzeciw lub zażądać przeniesienia danych. Przysługuje Ci również skarga do Prezesa Urzędu Ochrony Danych Osobowych. W sprawach prywatności napisz na adres e-mail podany w sekcji administratora.</p>
 
       <h2>Pliki cookie i decyzje automatyczne</h2>
-      <p>Strona nie korzysta z własnych narzędzi analitycznych ani reklamowych plików cookie. Hosting może przetwarzać techniczne logi niezbędne do dostarczania i zabezpieczenia strony. Nie podejmuję wobec Ciebie decyzji wyłącznie w sposób zautomatyzowany ani nie profiluję Cię.</p>
+      <p>Usługi hostingu i ochrony antyspamowej mogą korzystać z technicznych danych przeglądarki, identyfikatorów i mechanizmów bezpieczeństwa. W razie uruchomienia narzędzi analitycznych lub reklamowych zasady ich stosowania oraz odpowiednie zgody zostaną opisane osobno. Na podstawie zgłoszeń nie podejmuję wobec Ciebie decyzji wyłącznie w sposób zautomatyzowany ani nie profiluję Cię w celach handlowych.</p>
 
-      <p>Jeżeli włączę formularz wysyłający dane bezpośrednio do zewnętrznego dostawcy, dodam analitykę lub zmienię sposób obsługi danych, zaktualizuję tę politykę. Dokument jest informacją przygotowaną dla obecnej konfiguracji serwisu i nie stanowi porady prawnej.</p>
+      <p>Opis procesu online ma zastosowanie dopiero po uruchomieniu i skonfigurowaniu tej funkcji na stronie. Przed publikacją należy zweryfikować prawidłowość informacji i dostawców pod kątem RODO. Dokument nie stanowi porady prawnej.</p>
     </article>
   </main>
+<footer class="site-footer" aria-label="Stopka strony">
+ <div class="wrap footer-main">
+  <div class="footer-about"><a class="footer-brand" href="/" aria-label="3DPrintMe — strona główna"><img src="/img/logo-new.svg" width="190" height="48" alt="3DPrintMe" loading="lazy"></a><p>Druk 3D FDM na zamówienie — części użytkowe, prototypy i krótkie serie z PLA, PETG i TPU.</p><p class="footer-location">Kraków · odbiór osobisty po umówieniu · wysyłka w Polsce</p><p>Opinie klientów: <a class="text-link" href="https://pl.trustpilot.com/review/3dprintme.pl" target="_blank" rel="noopener noreferrer">Sprawdź 3DPrintMe w Trustpilot ↗</a></p></div>
+  <nav class="footer-nav" aria-label="Usługi"><h2 class="footer-title">Usługi</h2><a href="/czesci-zamienne-druk-3d/">Części zamienne 3D</a><a href="/prototypowanie-3d/">Prototypowanie 3D</a><a href="/druk-3d-male-serie/">Krótkie serie</a><a href="/projektowanie-modeli-3d/">Przygotowanie modeli</a></nav>
+  <nav class="footer-nav" aria-label="Poradnik i informacje"><h2 class="footer-title">Przydatne informacje</h2><a href="/poradnik/druk-3d-w-krakowie-jak-zamowic.html">Druk 3D w Krakowie — jak zamówić?</a><a href="/poradnik/ile-kosztuje-druk-3d.html">Od czego zależy cena?</a><a href="/poradnik/jak-przygotowac-plik.html">Jak przygotować plik STL?</a><a href="/poradnik/">Wszystkie poradniki</a></nav>
+  <div class="footer-contact"><h2 class="footer-title">Kontakt i wycena</h2><p>Masz plik albo pomysł? Opisz projekt i zapytaj o możliwość realizacji.</p><a class="footer-cta" href="/#kontakt">Wyślij zapytanie do wyceny ↗</a><a class="footer-email" href="mailto:kontakt.3dprintme@gmail.com">kontakt.3dprintme@gmail.com</a><a href="/#pytania">Masz pytanie? Formularz kontaktowy</a></div>
+ </div><div class="wrap footer-bottom"><span>© 3DPrintMe · Druk 3D na zamówienie w Krakowie</span><a href="/prywatnosc.html">Polityka prywatności</a></div></footer>
 </body>
 </html>

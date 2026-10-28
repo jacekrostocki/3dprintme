@@ -1,0 +1,24 @@
+// Audyt statyczny nowej integracji. Nie zastępuje testów E2E i realnego deployu.
+const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict");
+const root=path.join(__dirname,"..");
+const read=f=>fs.readFileSync(path.join(root,f),"utf8");
+const app=read("src/App.tsx"), quote=read("src/forms/QuoteForm.tsx"), contact=read("src/forms/ContactForm.tsx");
+const firebase=JSON.parse(read("firebase.json"));
+assert.match(app,/<QuoteForm\s*\/>/);
+assert.match(app,/<ContactForm\s*\/>/);
+assert.match(app,/id="pytania"/);
+assert.match(app,/id="kontakt"/);
+assert.match(quote,/type="file"/);
+assert.match(quote,/\.stl,\.3mf/);
+assert.match(contact,/contact-message/);
+assert.match(quote,/name="turnstileToken"|data.set\("turnstileToken"/);
+assert.match(contact,/name="turnstileToken"|data.set\("turnstileToken"/);
+assert.ok(firebase.hosting.rewrites.some(x=>x.source==="/api/inquiry"));
+assert.ok(read("functions/index.js").includes("verifyTurnstile"));
+assert.ok(read("functions/index.js").includes("sendEmail"));
+assert.ok(read("functions/index.js").includes("cleanupWebsiteInquiries"));
+assert.ok(read("firestore.rules").includes("allow read, write: if false"));
+assert.ok(read("storage.rules").includes("allow read, write: if false"));
+const crypto=require("node:crypto");
+assert.equal(crypto.createHash("sha256").update(read("src/site.css")).digest("hex"),"300ae3f17db7ab73f2436a4f14f3ea21df150090c721546f039b57d1f3205686","Original CSS changed!");
+console.log("PASS: 15 form and CSS checks.");

@@ -1,64 +1,116 @@
 import React, { useState } from "react";
+import {QuoteForm} from "./forms/QuoteForm";
+import {ContactForm} from "./forms/ContactForm";
 import { company } from "./config";
 
 const services = [
- ["01", "Druk z gotowego pliku", "Masz model STL, 3MF lub OBJ? Prześlij go wraz z liczbą sztuk i opisem zastosowania. Sprawdzimy możliwość wykonania i przygotujemy wycenę."],
- ["02", "Prototypy i przymiarki", "Sprawdź kształt, dopasowanie i ergonomię przed kolejnym etapem projektu. Druk 3D pozwala pracować nad kolejnymi wersjami części."],
- ["03", "Części użytkowe i małe serie", "Uchwyty, organizery, obudowy, adaptery i elementy do własnych projektów. Pojedyncza sztuka lub powtarzalna seria — zakres ustalamy na podstawie modelu."],
+  {number: "01", title: "Części zamienne i użytkowe", text: "Uchwyty, mocowania, dystanse, osłony i elementy dopasowane do konkretnego zastosowania.", href: "/czesci-zamienne-druk-3d/"},
+  {number: "02", title: "Prototypowanie 3D", text: "Modele do sprawdzenia wymiarów, ergonomii, montażu i kolejnych wariantów projektu.", href: "/prototypowanie-3d/"},
+  {number: "03", title: "Druk 3D małych serii", text: "Pojedyncze sztuki i krótkie partie powtarzalnych detali bez kosztów formy produkcyjnej.", href: "/druk-3d-male-serie/"},
+  {number: "04", title: "Pomoc w przygotowaniu modelu", text: "Masz szkic i wymiary, ale nie masz pliku STL? Zapytaj o możliwość opracowania geometrii.", href: "/projektowanie-modeli-3d/"},
 ];
+// Wybrane poradniki na stronie głównej; pełna biblioteka jest w /poradnik/.
 const articles = [
- ["jak-przygotowac-plik", "PRZYGOTOWANIE MODELU", "Jak przygotować plik do druku 3D?", "Format, wymiary i informacje, które ułatwiają wycenę."],
- ["pla-petg-tpu", "MATERIAŁY", "PLA, PETG czy TPU?", "Dobierz materiał do warunków, w których będzie pracować część."],
- ["ile-kosztuje-druk-3d", "WYCENA", "Od czego zależy koszt druku 3D?", "Dlaczego masa modelu to tylko jeden z elementów ceny."],
- ["zastosowania-druku-3d", "INSPIRACJE", "Co można wydrukować w 3D?", "Praktyczne przykłady części i akcesoriów na zamówienie."],
- ["druk-3d-male-serie", "PRODUKCJA", "Druk 3D małych serii", "Kiedy produkcja krótkiej serii metodą FDM ma sens?"],
+  ["druk-3d-w-krakowie-jak-zamowic", "KRAKÓW · PRAKTYCZNIE", "Jak zamówić druk 3D w Krakowie?", "Od przygotowania modelu i wyceny po odbiór osobisty lub wysyłkę."],
+  ["ile-kosztuje-druk-3d", "WYCENA", "Ile kosztuje druk 3D?", "Zrozum, co wpływa na cenę: geometria, podpory i przygotowanie modelu."],
+  ["druk-3d-ze-zdjecia-szkicu", "OD POMYSŁU DO MODELU", "Druk 3D ze zdjęcia lub szkicu", "Co zmierzyć i sfotografować, gdy nie masz gotowego pliku STL?"],
 ];
-const testimonials = [
- { name: "Michał", text: "Potrzebowałem niewielkiego elementu do naprawy sprzętu, którego nie dało się już kupić. Część została wydrukowana zgodnie z wymiarami i pasowała bez problemu." },
- { name: "Tomasz", text: "Zleciłem wydruk prototypu obudowy do projektu elektronicznego. Dobra jakość wykonania, rozsądna cena i sprawna komunikacja. Dokładnie tego potrzebowałem." },
- { name: "Anna", text: "Zamówiłam kilka organizerów i uchwytów na wymiar. Wszystko wygląda estetycznie i świetnie sprawdza się na co dzień. Fajna alternatywa dla gotowych produktów." },
- { name: "Paweł", text: "Potrzebowaliśmy kilkunastu identycznych elementów do naszego projektu. Realizacja przebiegła sprawnie, a wszystkie wydruki były zgodne z zamówieniem." },
- { name: "Kamil", text: "Wysłałem gotowy plik STL i szybko dostałem wycenę. Wydruk dotarł dobrze zabezpieczony, jakość bardzo dobra. Na pewno skorzystam ponownie." },
- { name: "Katarzyna", text: "Miałam pomysł na nietypowy uchwyt, ale nie wiedziałam, czy da się go wykonać. Udało się dobrać odpowiednie rozwiązanie i efekt spełnił moje oczekiwania." },
-];
-const articleImages: Record<string, { file: string; alt: string }> = {
- "jak-przygotowac-plik": { file: "czesci-techniczne-3d", alt: "Koło zębate i uchwyt wykonane w technologii druku 3D" },
- "pla-petg-tpu": { file: "odbojniki-3d", alt: "Wydrukowany dystans przy kółku meblowym" },
- "ile-kosztuje-druk-3d": { file: "mechanizmy-3d", alt: "Mechanizm z kół zębatych wykonany w druku 3D" },
- "zastosowania-druku-3d": { file: "organizery-3d", alt: "Biurkowy organizer z miejscem na telefon, długopis i drobiazgi" },
- "druk-3d-male-serie": { file: "klipsy-3d", alt: "Uchwyt na przewody USB zamocowany na krawędzi biurka" },
+const articleImages: Record<string, {file: string; alt: string}> = {
+  "druk-3d-w-krakowie-jak-zamowic": {file: "czesci-techniczne-3d", alt: "Ilustracja poglądowa detali technicznych drukowanych w 3D"},
+  "jak-przygotowac-plik": {file: "czesci-techniczne-3d", alt: "Ilustracja poglądowa kół zębatych i uchwytów z druku 3D"},
+  "pla-petg-tpu": {file: "odbojniki-3d", alt: "Ilustracja poglądowa osłony koła meblowego"},
+  "ile-kosztuje-druk-3d": {file: "mechanizmy-3d", alt: "Ilustracja poglądowa mechanizmu drukowanego w 3D"},
+  "zastosowania-druku-3d": {file: "organizery-3d", alt: "Ilustracja poglądowa organizera biurkowego"},
+  "druk-3d-male-serie": {file: "klipsy-3d", alt: "Ilustracja poglądowa uchwytów na przewody"},
+  "druk-3d-ze-zdjecia-szkicu": {file: "czesci-techniczne-3d", alt: "Ilustracja poglądowa detali technicznych z druku 3D"},
 };
+const faq = [
+  ["Ile kosztuje druk 3D na zamówienie?", "Cena zależy m.in. od geometrii, zużycia materiału, czasu pracy drukarki, podpór i liczby sztuk. Wycenę przygotowujemy indywidualnie po sprawdzeniu projektu."],
+  ["Czy mogę zamówić pojedynczą sztukę?", "Tak. Druk FDM nadaje się również do wykonania pojedynczego egzemplarza, prototypu lub próbki."],
+  ["Czy mogę zamówić wydruk bez pliku STL?", "Możesz przesłać zdjęcia, wymiary i szkic. Ocenimy, czy możemy przygotować potrzebny model lub dostosować istniejący projekt."],
+  ["Jakie materiały drukujecie?", "Podstawowe materiały to PLA, PETG i TPU. Dostępność wybranego koloru i filamentu potwierdzimy przed przyjęciem zamówienia."],
+  ["Czy mogę odebrać wydruk w Krakowie?", "Odbiór osobisty jest możliwy po wcześniejszym uzgodnieniu. Możemy również uzgodnić wysyłkę na terenie Polski."],
+  ["Czy mogę dołączyć plik STL?", "Tak, formularz wyceny obsługuje STL, 3MF i inne formaty. Przed uruchomieniem zabezpieczonej wysyłki online możesz dołączyć plik do przygotowanej wiadomości e-mail."],
+];
 
 export default function App() {
- const [menu, setMenu] = useState(false);
- const [testimonialsPaused, setTestimonialsPaused] = useState(false);
- const [status, setStatus] = useState("");
- const [sending, setSending] = useState(false);
- async function submit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault(); const form = e.currentTarget; const data = new FormData(form); setStatus("");
-  const file = data.get("file") as File | null;
-  if (file && file.size > 20 * 1024 * 1024) { setStatus("Plik jest za duży. Limit wynosi 20 MB. Prześlij link do pliku w opisie."); return; }
-  if (company.formEndpoint) {
-   setSending(true);
-   try { const res = await fetch(company.formEndpoint, {method: "POST", body: data}); if (!res.ok) throw new Error(); setStatus("Zapytanie zostało wysłane. Dziękujemy!"); form.reset(); }
-   catch { setStatus("Nie udało się wysłać zapytania. Spróbuj ponownie lub skontaktuj się bezpośrednio e-mailem."); }
-   finally { setSending(false); }
-  } else if (company.email) {
-   const body = `Imię: ${data.get("name")}\nE-mail: ${data.get("email")}\n\n${data.get("message")}\n\nPamiętaj o dołączeniu pliku do tej wiadomości.`;
-   window.location.href = `mailto:${company.email}?subject=${encodeURIComponent("Zapytanie o druk 3D")}&body=${encodeURIComponent(body)}`;
-   setStatus("Otwarto program pocztowy. Dołącz plik i wyślij wiadomość w poczcie. Strona nie wysłała zapytania.");
-  } else setStatus("Kontakt nie jest jeszcze skonfigurowany. Właściciel strony musi uzupełnić adres e-mail przed publikacją.");
- }
- return <>
- <a className="skip" href="#main">Przejdź do treści</a>
- <header className="header wrap"><a className="brand" href="/" aria-label="3dprintme — strona główna"><img className="brand-logo" src="/img/logo.png" alt=""/></a><button className="menu-toggle" aria-expanded={menu} aria-controls="navigation" onClick={()=>setMenu(!menu)}>{menu ? "Zamknij" : "Menu"}</button><nav id="navigation" className={menu ? "open" : ""} aria-label="Główna nawigacja">{[["uslugi","Usługi"],["materialy","Materiały"],["opinie","Opinie"],["poradnik","Poradnik"],["kontakt","Wyceń wydruk"]].map(([id,label])=><a key={id} className={id === "kontakt" ? "button small" : ""} href={`/#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav></header>
- <main id="main">
- <section className="hero wrap"><div><p className="eyebrow">DRUK 3D W KRAKOWIE · WYSYŁKA W CAŁEJ POLSCE</p><h1>Druk 3D na<br/><span>zamówienie</span><br/>w Krakowie</h1><p className="lead">Projektujemy i drukujemy prototypy, części użytkowe oraz krótkie serie FDM. Obsługujemy klientów lokalnie w Krakowie, a gotowe wydruki wysyłamy na terenie całej Polski.</p><div className="actions"><a className="button" href="#kontakt">Zapytaj o wycenę <span aria-hidden="true">↗</span></a><a className="text-link" href="#uslugi">Poznaj usługi ↓</a></div><p className="fine">Pojedyncze elementy · Prototypy · Małe serie</p></div><figure className="hero-art"><img src="/img/drukarka.svg" alt="Ilustracja drukarki 3D budującej warstwa po warstwie pomarańczowy element"/><figcaption>Od pierwszej warstwy do gotowej części.</figcaption></figure></section>
- <section className="section wrap" id="uslugi"><p className="eyebrow">CO MOŻEMY WYDRUKOWAĆ?</p><h2>Małe części.<br/>Dużo możliwości.</h2><div className="cards">{services.map(([n,title,text])=><article className="card" key={n}><span className="number">{n}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
- <section className="tint" id="materialy"><div className="section wrap material-layout"><div><p className="eyebrow">MATERIAŁ MA ZNACZENIE</p><h2>Dopasowany do<br/>Twojego projektu.</h2><p>Liczy się nie tylko wygląd. Napisz, czy część będzie pracować pod obciążeniem, na zewnątrz lub w podwyższonej temperaturze. Dostępność materiału i koloru potwierdzamy przy wycenie.</p><a className="text-link" href="/poradnik/pla-petg-tpu.html">Porównaj materiały ↗</a></div><div className="materials">{[["PLA","Modele i prototypy","Do modeli wizualnych, dekoracji i przymiarek w warunkach pokojowych."],["PETG","Elementy użytkowe","Do obudów, uchwytów i akcesoriów, gdy potrzebna jest większa odporność niż w PLA."],["TPU","Elastyczne detale","Do odbojników, osłon i elementów wymagających ugięcia. Twardość dobieramy do zastosowania."],["Inne","ABS, ASA, PA, PC, PET, PVA","Dobór i dostępność potwierdzamy dla konkretnego filamentu. CF/GF wymagają upgrade’u ekstrudera i hotendu."]].map(([name,title,text])=><div className="material" key={name}><strong>{name}</strong><div><h3>{title}</h3><p>{text}</p></div></div>)}</div></div></section>
- <section className="section wrap note"><span className="eyebrow">MAŁA PRACOWNIA. KONKRETNE PODEJŚCIE.</span><h2>Opowiedz, do czego<br/>potrzebujesz tej części.</h2><p>Rozwijamy lokalną pracownię druku 3D w Krakowie. Stawiamy na konkurencyjne wyceny, również dla pojedynczych sztuk i małych serii. Zależy nam na praktycznych rozwiązaniach i bezpośrednim kontakcie. Możesz przesłać gotowy model lub opisać pomysł — ocenimy, co jest potrzebne, aby przejść do realizacji.</p></section>
- <section className="tint" id="opinie"><div className="section wrap"><div className="section-top"><div><p className="eyebrow">OPINIE KLIENTÓW</p><h2>Doświadczenia z realizacji.</h2></div><button className="testimonial-toggle" type="button" aria-pressed={testimonialsPaused} onClick={()=>setTestimonialsPaused(!testimonialsPaused)}>{testimonialsPaused ? "Wznów przewijanie" : "Zatrzymaj przewijanie"}</button></div><div className="testimonial-viewport" role="region" aria-label="Opinie klientów" tabIndex={0}><div className={`testimonial-track${testimonialsPaused ? " is-paused" : ""}`} aria-live="off"><div className="testimonial-group">{testimonials.map(({name,text})=><figure className="card testimonial-card" key={name}><blockquote>{text}</blockquote><figcaption>{name}</figcaption></figure>)}</div><div className="testimonial-group" aria-hidden="true">{testimonials.map(({name,text})=><figure className="card testimonial-card" key={`copy-${name}`}><blockquote>{text}</blockquote><figcaption>{name}</figcaption></figure>)}</div></div></div></div></section>
- <section className="section wrap" id="poradnik"><div className="section-top"><div><p className="eyebrow">WARTO WIEDZIEĆ</p><h2>Przed pierwszym wydrukiem.</h2></div><a className="text-link" href="/poradnik/">Wszystkie artykuły ↗</a></div><div className="cards">{articles.map(([slug,tag,title,text])=><article className="card article" key={slug}><a href={`/poradnik/${slug}.html`}><img className="article-image" src={`/img/${articleImages[slug].file}.webp`} alt={articleImages[slug].alt} loading="lazy"/></a><span className="eyebrow">{tag}</span><h3><a href={`/poradnik/${slug}.html`}>{title}</a></h3><p>{text}</p><a className="text-link" href={`/poradnik/${slug}.html`}>Czytaj artykuł ↗</a></article>)}</div></section>
- <section className="tint" id="kontakt"><div className="section wrap contact"><div><p className="eyebrow">ZACZNIJMY OD TWOJEGO PROJEKTU</p><h2>Co chcesz<br/>wydrukować?</h2><p>Podaj wymiary, liczbę sztuk i zastosowanie. Jeśli masz model, dołącz go do zapytania. Termin, materiał i cenę potwierdzimy po sprawdzeniu projektu.</p>{company.email && <p><a className="text-link" href={`mailto:${company.email}`}>{company.email}</a></p>}{company.phone && <p><a href={`tel:${company.phone.replace(/\s/g,"")}`}>{company.phone}</a></p>}<p className="fine">Wydruki FDM mają widoczne warstwy. Dopasowanie i wytrzymałość zależą od projektu, materiału i kierunku druku. Elementy do zastosowań krytycznych wymagają odrębnej oceny.</p></div><form onSubmit={submit}><label htmlFor="name">Imię<input id="name" name="name" autoComplete="given-name" required maxLength={100}/></label><label htmlFor="email">Adres e-mail<input id="email" name="email" type="email" autoComplete="email" required maxLength={200}/></label><label htmlFor="message">Opisz projekt<textarea id="message" name="message" required minLength={10} maxLength={6000} rows={5} placeholder="Co drukujemy? Jakie wymiary, liczba sztuk i zastosowanie?"/></label>{company.formEndpoint && <label htmlFor="file">Plik modelu — opcjonalnie, do 20 MB<input id="file" type="file" name="file" accept=".stl,.3mf,.obj,.step,.stp,.zip"/></label>}<p className="fine">{company.formEndpoint ? "Przesłane dane służą do obsługi Twojego zapytania." : "Formularz otworzy program pocztowy. Plik modelu dołączysz bezpośrednio w wiadomości e-mail."} <a href="/prywatnosc.html">Informacje o prywatności</a></p><button className="button" disabled={sending} type="submit">{sending ? "Wysyłanie…" : company.formEndpoint ? "Wyślij zapytanie ↗" : "Przygotuj wiadomość ↗"}</button><p role="status" aria-live="polite">{status}</p></form></div></section>
- </main><footer className="wrap footer"><a className="brand" href="/">{company.name}</a><span>Druk 3D · {company.location}</span><a href="/prywatnosc.html">Prywatność</a><span>© {new Date().getFullYear()}</span><section className="footer-quicklinks"><h2>Szybkie linki</h2><nav aria-label="Szybkie linki"><a href="/#uslugi">Usługi</a><a href="/#materialy">Materiały</a><a href="/#opinie">Opinie klientów</a><a href="/poradnik/">Poradnik</a><a href="/#kontakt">Kontakt i wycena</a></nav></section><section className="footer-resources"><h2>Przydatne linki</h2><nav aria-label="Przydatne linki"><a href="https://www.tinkercad.com/" target="_blank" rel="noopener noreferrer">Tinkercad — Darmowe projektowanie prostych modeli 3D</a><a href="https://www.printables.com/" target="_blank" rel="noopener noreferrer">Printables — Gotowe modele do druku 3D</a><a href="https://makerworld.com/" target="_blank" rel="noopener noreferrer">MakerWorld — Biblioteka modeli 3D</a><a href="https://pl.trustpilot.com/review/3dprintme.pl" target="_blank" rel="noopener noreferrer">Trustpilot — Sprawdź opinie o usługodawcy</a></nav></section></footer></>;
+  const [menu, setMenu] = useState(false);
+  return <>
+    <a className="skip" href="#main">Przejdź do treści</a>
+    <header className="header wrap">
+      <a className="brand" href="/" aria-label="3DPrintMe — strona główna"><img className="brand-logo" src="/img/logo-new.svg" width="235" height="56" alt="3DPrintMe" /></a>
+      <button className="menu-toggle" type="button" aria-expanded={menu} aria-controls="navigation" onClick={()=>setMenu(!menu)}>{menu ? "Zamknij" : "Menu"}</button>
+      <nav id="navigation" className={menu ? "open" : ""} aria-label="Główna nawigacja">
+        {[ ["uslugi", "Usługi"], ["materialy", "Materiały"], ["poradnik", "Poradnik"], ["pytania", "Kontakt"], ["kontakt", "Wyceń druk"] ].map(([id,label]) => <a className={id === "kontakt" ? "button small" : ""} key={id} href={`/#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}
+      </nav>
+    </header>
+    <main id="main">
+      <section className="hero wrap">
+        <div><p className="eyebrow">LOKALNY DRUK 3D · KRAKÓW · WYSYŁKA W POLSCE</p>
+          <h1>Druk 3D na <span>zamówienie</span> w Krakowie</h1>
+          <p className="lead">Funkcjonalne części zamienne, prototypy, uchwyty i krótkie serie FDM z PLA, PETG i TPU. Masz plik STL albo pomysł? Opisz swój projekt i zapytaj o wycenę.</p>
+          <div className="actions"><a className="button" href="#kontakt">Poproś o wycenę <span aria-hidden="true">↗</span></a><a className="text-link" href="#poradnik">Przeczytaj poradnik ↓</a></div>
+          <p className="hero-fast-quote"><strong>Szybka wycena druku 3D — bez tracenia czasu.</strong> Prześlij model, liczbę sztuk i wymagania w jednym zgłoszeniu. <a href="#kontakt">Przejdź do formularza wyceny</a>.</p>
+          <p className="fine">Od pojedynczego elementu do małej serii · Odbiór osobisty po uzgodnieniu</p>
+        </div>
+        <figure className="hero-art"><img src="/img/drukarka.svg" width="540" height="450" alt="Schemat drukarki FDM nakładającej kolejne warstwy modelu"/><figcaption>Druk 3D FDM — od projektu do elementu użytkowego.</figcaption></figure>
+      </section>
+      <section className="section wrap" id="uslugi"><p className="eyebrow">USŁUGI DRUKU 3D W KRAKOWIE</p><h2>Co możemy wykonać?</h2><p className="section-intro">Dobieramy zakres pracy do konkretnego zastosowania. Zapoznaj się z opisami usług i ograniczeniami technologii FDM.</p>
+        <div className="cards services-grid">{services.map(s=><article className="card" key={s.number}><span className="number">{s.number}</span><h3>{s.title}</h3><p>{s.text}</p><a className="text-link" href={s.href}>Dowiedz się więcej ↗</a></article>)}</div>
+      </section>
+      <section className="tint" id="materialy"><div className="section wrap material-layout"><div><p className="eyebrow">MATERIAŁ MA ZNACZENIE</p><h2>PLA, PETG i TPU – dobór do zastosowania</h2><p>Powiedz, czy część pracuje pod obciążeniem, na zewnątrz lub w podwyższonej temperaturze. Dostępność konkretnego koloru i filamentu potwierdzamy przy wycenie.</p><a className="text-link" href="/poradnik/pla-petg-tpu.html">Porównaj materiały ↗</a></div><div className="materials">
+        {[["PLA","Modele i przymiarki","Do elementów demonstracyjnych, organizacji przestrzeni i prototypów."],["PETG","Elementy użytkowe","Do obudów, uchwytów i akcesoriów wymagających większej odporności niż PLA."],["TPU","Elastyczne osłony","Do odbojników, stopków i części, które powinny się uginać."],["Pozostałe","Zapytaj o dostępność","Inne tworzywa dobieramy indywidualnie — nie wszystkie są stale dostępne."]].map(([name,title,text])=><div className="material" key={name}><strong>{name}</strong><div><h3>{title}</h3><p>{text}</p></div></div>)}
+      </div></div></section>
+      <section className="tint"><div className="section wrap note"><p className="eyebrow">LOKALNA PRACOWNIA · KRAKÓW</p><h2>Indywidualny druk 3D, bez zbędnych formalności</h2><p>Realizujemy zapytania od klientów z Krakowa i innych miast. Odbiór osobisty jest możliwy po wcześniejszym uzgodnieniu; realizujemy również wysyłkę. Nie prowadzimy otwartego punktu obsługi bez umawiania wizyt.</p><a className="text-link" href="/poradnik/druk-3d-w-krakowie-jak-zamowic.html">Jak zamówić druk 3D w Krakowie? ↗</a></div></section>
+      <section className="section wrap" id="faq"><div className="section-top"><div><p className="eyebrow">PYTANIA I ODPOWIEDZI</p><h2>Najczęstsze pytania o druk 3D</h2></div></div><div className="faq-list">{faq.map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
+      <section className="tint" id="poradnik"><div className="section wrap"><div className="section-top"><div><p className="eyebrow">WARTO WIEDZIEĆ</p><h2>Poradnik druku 3D</h2></div><a className="text-link" href="/poradnik/">Wszystkie artykuły ↗</a></div><div className="cards article-grid">{articles.map(([slug,tag,title,text])=><article className="card article" key={slug}><a href={`/poradnik/${slug}.html`}><img className="article-image" src={`/img/${articleImages[slug].file}.webp`} width="400" height="300" alt={articleImages[slug].alt} loading="lazy" decoding="async"/></a><span className="eyebrow">{tag}</span><h3><a href={`/poradnik/${slug}.html`}>{title}</a></h3><p>{text}</p><a className="text-link" href={`/poradnik/${slug}.html`}>Czytaj artykuł ↗</a></article>)}</div><p className="fine">Grafiki przy artykułach są ilustracjami poglądowymi, a nie fotografiami realizacji klientów.</p></div></section>
+      <section className="section wrap contact" id="kontakt">
+        <div><p className="eyebrow">WYCENA I UPLOAD STL / 3MF</p><h2>Wyceń swój projekt</h2>
+          <p>Masz plik STL, 3MF, STEP lub zdjęcie elementu? Opisz zastosowanie, wymiary, liczbę sztuk i preferowany materiał. Przygotujemy indywidualną wycenę.</p>
+          <p><a className="text-link" href={`mailto:${company.email}`}>{company.email}</a></p>
+          <p className="fine">Wytrzymałość druku FDM zależy od materiału, geometrii i kierunku warstw. Części do zastosowań krytycznych wymagają odrębnej oceny.</p>
+        </div>
+        <QuoteForm/>
+      </section>
+      <section className="tint" id="pytania"><div className="section wrap contact">
+        <div><p className="eyebrow">KONTAKT Z 3DPRINTME</p><h2>Masz pytanie?</h2>
+          <p>Nie potrzebujesz jeszcze wyceny? Napisz w sprawie materiałów, sposobu realizacji, możliwości odbioru lub innych kwestii związanych z drukiem 3D.</p>
+          <p>Możesz też skontaktować się bezpośrednio: <a className="text-link" href={`mailto:${company.email}`}>{company.email}</a>.</p>
+        </div>
+        <ContactForm/>
+      </div></section>
+    </main>
+    <footer className="site-footer" aria-label="Stopka strony">
+      <div className="wrap footer-main">
+        <div className="footer-about">
+          <a href="/" className="footer-brand" aria-label="3DPrintMe — strona główna"><img src="/img/logo-new.svg" width="190" height="48" alt="3DPrintMe" loading="lazy" /></a>
+          <p>Druk 3D FDM na zamówienie — części użytkowe, prototypy i krótkie serie z PLA, PETG i TPU.</p>
+          <p className="footer-location">Kraków · odbiór osobisty po umówieniu · wysyłka w Polsce</p>
+          <p>Opinie klientów: <a className="text-link" href={company.trustpilotUrl} target="_blank" rel="noopener noreferrer">Sprawdź 3DPrintMe w Trustpilot ↗</a></p>
+        </div>
+        <nav className="footer-nav" aria-label="Usługi">
+          <h2 className="footer-title">Usługi</h2>
+          <a href="/czesci-zamienne-druk-3d/">Części zamienne 3D</a>
+          <a href="/prototypowanie-3d/">Prototypowanie 3D</a>
+          <a href="/druk-3d-male-serie/">Krótkie serie</a>
+          <a href="/projektowanie-modeli-3d/">Przygotowanie modeli</a>
+        </nav>
+        <nav className="footer-nav" aria-label="Poradnik i informacje">
+          <h2 className="footer-title">Przydatne informacje</h2>
+          <a href="/poradnik/druk-3d-w-krakowie-jak-zamowic.html">Druk 3D w Krakowie — jak zamówić?</a>
+          <a href="/poradnik/ile-kosztuje-druk-3d.html">Od czego zależy cena?</a>
+          <a href="/poradnik/jak-przygotowac-plik.html">Jak przygotować plik STL?</a>
+          <a href="/poradnik/">Wszystkie poradniki</a>
+        </nav>
+        <div className="footer-contact">
+          <h2 className="footer-title">Kontakt i wycena</h2>
+          <p>Masz plik albo pomysł? Opisz projekt i zapytaj o możliwość realizacji.</p>
+          <a className="footer-cta" href="/#kontakt">Wyślij zapytanie do wyceny ↗</a>
+          <a className="footer-email" href={`mailto:${company.email}`}>{company.email}</a>
+          <a href="/#pytania">Masz pytanie? Formularz kontaktowy</a>
+        </div>
+      </div>
+      <div className="wrap footer-bottom"><span>© {new Date().getFullYear()} 3DPrintMe · Druk 3D na zamówienie w Krakowie</span><a href="/prywatnosc.html">Polityka prywatności</a></div>
+    </footer>
+  </>;
 }

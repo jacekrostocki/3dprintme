@@ -5,3 +5,8 @@ build/
 firebase-debug.log*
 backup.zip
 .DS_Store
+
+functions/node_modules/
+functions/.env
+functions/.env.*
+!functions/.env.example

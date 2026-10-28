@@ -1,10 +1,29 @@
 {
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs22"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
   "hosting": {
     "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/inquiry",
+        "function": {
+          "functionId": "submitInquiry",
+          "region": "europe-west1"
+        }
+      }
     ]
   }
 }

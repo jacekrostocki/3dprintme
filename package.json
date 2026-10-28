@@ -28,7 +28,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prestart": "node scripts/generate-pages.js",
-    "prebuild": "node scripts/generate-pages.js"
+    "prebuild": "node scripts/generate-pages.js",
+    "check:static": "node scripts/generate-pages.js && node scripts/check-static.js",
+    "check:forms": "node scripts/check-forms.js",
+    "check:editorial": "node scripts/generate-pages.js && node scripts/check-editorial.js",
+    "check:local-seo": "node scripts/generate-pages.js && node scripts/check-local-seo.js",
+    "check:trustpilot": "node scripts/generate-pages.js && node scripts/check-trustpilot.js",
+    "check:cra-imports": "node scripts/check-cra-imports.js"
   },
   "devDependencies": {
     "tsx": "^4.20.6"

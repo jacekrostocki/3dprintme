@@ -1,0 +1,632 @@
+{
+  "version": "1.0.0",
+  "project": "3DPrintMe SEO + conversion",
+  "audit_date": "2026-10-27",
+  "priority_meaning": {
+    "P0": "bezpieczeństwo/diagnoza",
+    "P1": "szybka korzyść",
+    "P2": "rozbudowa",
+    "P3": "opcjonalne"
+  },
+  "effort_meaning": {
+    "S": "kilka zmian w jednym obszarze",
+    "M": "kilka komponentów lub stron",
+    "L": "backend i UI, QA",
+    "XL": "osobny projekt"
+  },
+  "status": "code_changes_prepared_not_deployed",
+  "tasks": [
+    {
+      "id": "SEO-001",
+      "title": "S0 Audyt repo, mapa routingu i baseline",
+      "category": "DIAGNOSTYKA",
+      "priority": "P0",
+      "effort": "S",
+      "depends_on": [],
+      "references": [],
+      "implementation": [
+        "Sprawdź package.json, routing, Firebase Hosting, SEO head, analytics, grafiki, istniejące artykuły i opinie",
+        "Wykonaj build i zapis wyników bez edycji produkcji",
+        "Wykryj branch i nie pracuj na master/main"
+      ],
+      "acceptance": "Raport jest oparty na aktualnym repo; zawiera listę plików, luki, decyzje, wynik buildu.",
+      "owner_approval_required": false,
+      "status": "PARTIAL",
+      "implementation_result": "Rozpoznano rzeczywiste CRA+SSR w postbuild, hosting, URL, meta i artykuły; bazowego builda nie wykonano z braku npm.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-002",
+      "title": "Usunięcie fikcyjnych opinii i niepotwierdzonych claimów",
+      "category": "TEKSTY",
+      "priority": "P0",
+      "effort": "S",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "02_CONTENT/meta/audyt-claimow.md"
+      ],
+      "implementation": [
+        "Zidentyfikuj slider z opiniami / powielane testimonials",
+        "Jeśli nie ma dowodu na autentyczność usuń opinie z publicznego UI, ukryj sekcję lub zastąp neutralną sekcją procesu",
+        "Sprawdź slogany typu 24h, najwyższa jakość, 5/5; nie dopisuj dowodów"
+      ],
+      "acceptance": "Brak niezweryfikowanych recenzji i liczników ocen; nie obniżono dostępu do kontaktu.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Usunięto sześć niezweryfikowanych opinii i automatyczny slider; nie dodano fikcyjnych rekomendacji.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-003",
+      "title": "Title, description, H1, nagłówki i CTA strony głównej",
+      "category": "TEKSTY",
+      "priority": "P1",
+      "effort": "S",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "02_CONTENT/strony/home.md",
+        "02_CONTENT/meta/metadane.json"
+      ],
+      "implementation": [
+        "Zachowaj tylko jeden H1 i naturalny język",
+        "Zastosuj copy, zachowując istniejącą estetykę i bez wypychania keyword stuffing",
+        "Ustaw właściwe meta dla home, sprawdź wersję mobile"
+      ],
+      "acceptance": "HTML wyrenderowany ma 1 H1, unikalne meta, działające CTA; brak obietnic bez akceptacji.",
+      "owner_approval_required": false,
+      "status": "DONE",
+      "implementation_result": "Zaktualizowano H1, title, meta description, ofertę i CTA, zachowano naturalny język.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-004",
+      "title": "Lokalne informacje o Krakowie i obsłudze zamówień",
+      "category": "TEKSTY",
+      "priority": "P1",
+      "effort": "S",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "02_CONTENT/strony/kontakt-lokalny.md"
+      ],
+      "implementation": [
+        "Dodaj blok lokalny bez dokładnego adresu do czasu potwierdzenia",
+        "Warunkowo pokaż odbiór osobisty po uzgodnieniu",
+        "Nie publikuj fikcyjnych godzin, lokalizacji, telefonu, NIP"
+      ],
+      "acceptance": "Kraków i metody kontaktu opisane prawdziwie; dane osobowe nieujawnione.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Zaktualizowano komunikację lokalną, kontakt, odbiór po umówieniu i wysyłkę, bez publikacji adresu prywatnego.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-005",
+      "title": "Przejrzysta sekcja FAQ i linkowanie do zleceń",
+      "category": "TEKSTY",
+      "priority": "P1",
+      "effort": "S",
+      "depends_on": [
+        "SEO-003"
+      ],
+      "references": [
+        "02_CONTENT/strony/faq.md"
+      ],
+      "implementation": [
+        "Wstaw FAQ z odpowiedziami, bez obietnic konkretnych cen/terminów",
+        "Zadbaj o prawidłowe elementy details/summary lub button aria-expanded",
+        "Daj CTA do formularza i linki do poradnika"
+      ],
+      "acceptance": "FAQ działa klawiaturą i mobile; odpowiedzi zgodne z rzeczywistą ofertą.",
+      "owner_approval_required": false,
+      "status": "DONE",
+      "implementation_result": "Dodano semantyczne FAQ (details/summary) i linki do wyceny i usług.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-006",
+      "title": "Menedżer SEO: per-route metadata i kanoniczne URL",
+      "category": "TECH_SEO",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "05_TECH/spec-techniczne.md",
+        "02_CONTENT/meta/metadane.json"
+      ],
+      "implementation": [
+        "Dostosuj do aktualnego routera; dla każdej strony title/description/canonical/OG",
+        "Zapewnij trailing slash policy i www/HTTPS w jednej kanonicznej wersji",
+        "Nie zduplikuj meta w statycznym HTML i React"
+      ],
+      "acceptance": "Każdy URL ma unikalny title i 1 canonical do siebie, OG i właściwy status HTTP.",
+      "owner_approval_required": false,
+      "status": "PARTIAL",
+      "implementation_result": "Rozbudowano pipeline unikalnych meta/title i canonical per URL; działanie postbuild wymaga pełnego React build.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-007",
+      "title": "robots.txt, sitemap.xml i weryfikacja indeksacji",
+      "category": "TECH_SEO",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001",
+        "SEO-006"
+      ],
+      "references": [
+        "05_TECH/spec-techniczne.md"
+      ],
+      "implementation": [
+        "Zweryfikuj istniejące pliki przed tworzeniem",
+        "Utwórz sitemap dla prawdziwych canonical URL, wyklucz drafts i noindex",
+        "Nie zablokuj /assets; dodaj test dla nieistniejących URL-i i soft-404"
+      ],
+      "acceptance": "robots i sitemap odpowiadają 200; 404 rzeczywiste; sitemap nie ma fałszywych adresów.",
+      "owner_approval_required": false,
+      "status": "PARTIAL",
+      "implementation_result": "Rozszerzono generator sitemap o 8 adresów, robots działa w pipeline; weryfikacja GSC po publikacji.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-008",
+      "title": "Dane strukturalne firmowe i artykułów",
+      "category": "TECH_SEO",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-004",
+        "SEO-006"
+      ],
+      "references": [
+        "05_TECH/schema-snippets.json",
+        "05_TECH/spec-techniczne.md"
+      ],
+      "implementation": [
+        "Dodaj Organization/WebSite/LocalBusiness WYŁĄCZNIE według zatwierdzonych faktów",
+        "Article w artykułach, BreadcrumbList gdy breadcrumb jest faktycznie na stronie",
+        "Nie oznaczaj fikcyjnych opinii ani aggregateRating"
+      ],
+      "acceptance": "Rich Results Test i walidator schematu bez błędnych faktów.",
+      "owner_approval_required": true,
+      "status": "PARTIAL",
+      "implementation_result": "JSON-LD Organization/WebSite/Service, Article i BreadcrumbList w finalize-build; test rich results po build.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-009",
+      "title": "Optymalizacja obrazów i Core Web Vitals",
+      "category": "TECH_SEO",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "05_TECH/spec-techniczne.md"
+      ],
+      "implementation": [
+        "Zacznij od pomiaru mobile/desktop",
+        "Konwertuj tylko kopie źródłowych zdjęć bez retuszu, ustaw width/height, lazy loading poniżej folda",
+        "Nie wprowadzaj arbitralnych wymiarów hero ani agresywnego preload"
+      ],
+      "acceptance": "Brak regresji LCP/INP/CLS; zdjęcia oryginalne zachowane; WebP poprawnie widoczny.",
+      "owner_approval_required": false,
+      "status": "PARTIAL",
+      "implementation_result": "Logo SVG, favicon, małe obrazy WebP, lazy-loading, rozmiary obrazów, alt i reduced-motion; brak pomiaru CWV/PSI.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-010",
+      "title": "Sekcja realizacji na home i katalog /realizacje/",
+      "category": "PORTFOLIO",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001",
+        "SEO-002"
+      ],
+      "references": [
+        "02_CONTENT/strony/realizacje.md",
+        "03_ASSETS/manifest-zdjec.json",
+        "04_UI/spec-portfolio.md"
+      ],
+      "implementation": [
+        "Nie twórz fikcyjnych case studies ani klientów",
+        "Na początek jedna karta RÅSKOG i placeholdery w edytorze, NIE publikuj pustych kart",
+        "CTA do case i kontaktu"
+      ],
+      "acceptance": "Na stronie tylko zatwierdzone projekty ze zgodnymi fotografiami i opisami.",
+      "owner_approval_required": true,
+      "status": "PARTIAL",
+      "implementation_result": "Gotowa sekcja realizacji i /realizacje/, autorski projekt RÅSKOG; galeria autentycznych ujęć wymaga zatwierdzenia.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-011",
+      "title": "Case study odbojnika IKEA RÅSKOG",
+      "category": "PORTFOLIO",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-010"
+      ],
+      "references": [
+        "02_CONTENT/strony/case-ikea-raskog.md",
+        "03_ASSETS/manifest-zdjec.json"
+      ],
+      "implementation": [
+        "Opublikuj tylko po obejrzeniu i zatwierdzeniu zdjęć przez właściciela",
+        "Nie dopisuj liczby sprzedanych sztuk, testów laboratoryjnych ani klientów",
+        "Zamieść kontekst, iteracje, materiał TPU i zastrzeżenie niezależnego akcesorium"
+      ],
+      "acceptance": "Case jest merytoryczny, nie przypisuje marce IKEA autorstwa akcesorium, posiada alt i CTA.",
+      "owner_approval_required": true,
+      "status": "PARTIAL",
+      "implementation_result": "Przygotowano i zintegrowano case study RÅSKOG; nie użyto niezweryfikowanych kolaży jako zdjęć realizacji.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-012",
+      "title": "Podstrona /czesci-zamienne-druk-3d/",
+      "category": "USLUGI",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/strony/czesci-zamienne.md"
+      ],
+      "implementation": [
+        "Unikalny nagłówek i realna oferta",
+        "Opracuj wymagania klienta i ograniczenia bezpieczeństwa",
+        "Linki do formularza, home, poradnika i case"
+      ],
+      "acceptance": "Unikalna treść, aktywne linki i jeden H1; usługa jest faktycznie wykonywana.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Dodano statyczną, indeksowalną /czesci-zamienne-druk-3d/ z ofertą, ograniczeniami i CTA.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-013",
+      "title": "Podstrona /prototypowanie-3d/",
+      "category": "USLUGI",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/strony/prototypowanie.md"
+      ],
+      "implementation": [
+        "Unikalny opis procesu iteracji prototypu",
+        "Nie obiecuj tolerancji wymiarowych ani SLA bez testów",
+        "Odesłanie do formularza i case"
+      ],
+      "acceptance": "Strona różni się istotnie od home; brak thin/duplicate content.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Dodano statyczną /prototypowanie-3d/ z opisem metody i CTA.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-014",
+      "title": "Podstrona /druk-3d-male-serie/",
+      "category": "USLUGI",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/strony/male-serie.md"
+      ],
+      "implementation": [
+        "Wyjaśnij realny tryb niewielkich nakładów",
+        "Bez obietnic wolumenów i terminów",
+        "Podaj dane niezbędne do zapytania"
+      ],
+      "acceptance": "Unikalny opis; nie deklaruje niepotwierdzonych mocy produkcyjnych.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Dodano statyczną /druk-3d-male-serie/ z SEO i CTA.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-015",
+      "title": "Podstrona /projektowanie-modeli-3d/",
+      "category": "USLUGI",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/strony/projektowanie.md"
+      ],
+      "implementation": [
+        "Usługę umieść tylko jeśli właściciel potwierdza ofertę CAD",
+        "Rozróżnij projekt CAD od samego wydruku",
+        "Dodaj wymagania pomiarowe i prawa do modelu"
+      ],
+      "acceptance": "Zakres CAD odpowiada możliwościom i wycenie firmy.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Dodano statyczną /projektowanie-modeli-3d/ z warunkowym opisem zakresu, bez obietnic.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-016",
+      "title": "Nowy poradnik: PLA, PETG czy TPU?",
+      "category": "CONTENT",
+      "priority": "P2",
+      "effort": "S",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/artykuly/pla-petg-tpu.md"
+      ],
+      "implementation": [
+        "Przed dodaniem sprawdź istniejący poradnik pod kątem kanibalizacji",
+        "Zaktualizuj istniejący artykuł zamiast publikować bliźniaczy",
+        "Wewnętrzne linki do wyceny i materiałów"
+      ],
+      "acceptance": "Jeden kanoniczny URL dla tematu; materiałowe zastosowania zgodne z realiami.",
+      "owner_approval_required": false,
+      "status": "DONE",
+      "implementation_result": "Rozszerzono istniejący artykuł PLA/PETG/TPU, bez tworzenia konkurencyjnego duplikatu URL.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-017",
+      "title": "Nowy poradnik: Jak przygotować plik STL do wyceny",
+      "category": "CONTENT",
+      "priority": "P2",
+      "effort": "S",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/artykuly/jak-przygotowac-stl.md"
+      ],
+      "implementation": [
+        "Dodaj checklistę units/manifold/wymiary/tolerancje/orientacja",
+        "Unikaj ogólników, podaj przykłady błędów",
+        "Sprawdź podobne istniejące treści"
+      ],
+      "acceptance": "Czytelny artykuł, checklist i CTA do uploadu.",
+      "owner_approval_required": false,
+      "status": "DONE",
+      "implementation_result": "Rozszerzono istniejący artykuł o modelowaniu i checkliście STL, bez duplikatu URL.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-018",
+      "title": "Nowy poradnik: Co wpływa na koszt druku 3D",
+      "category": "CONTENT",
+      "priority": "P2",
+      "effort": "S",
+      "depends_on": [
+        "SEO-006"
+      ],
+      "references": [
+        "02_CONTENT/artykuly/od-czego-zalezy-cena.md"
+      ],
+      "implementation": [
+        "Bez wymyślonych stawek; opis kosztów materiał, czas, wsparcia, seria",
+        "Zaznacz że dokładna cena wymaga sprawdzenia pliku",
+        "Link do formularza"
+      ],
+      "acceptance": "Brak deklaracji nieistniejącego cennika; dobry search intent.",
+      "owner_approval_required": false,
+      "status": "DONE",
+      "implementation_result": "Rozszerzono istniejący artykuł o kosztach wydruku, bez duplikatu URL.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-019",
+      "title": "Projekt formularza wyceny z uploadem pliku",
+      "category": "FORMULARZ",
+      "priority": "P1",
+      "effort": "L",
+      "depends_on": [
+        "SEO-001",
+        "SEO-004"
+      ],
+      "references": [
+        "05_TECH/spec-formularz.md",
+        "04_UI/spec-formularz.md",
+        "04_UI/mockup-strona-glowna-formularz.png"
+      ],
+      "implementation": [
+        "Wdroż UX formularza i backend po ustaleniu Firebase projektu",
+        "Nie wysyłaj plików bezpośrednio z publicznego frontu do niechronionego storage",
+        "Dodaj walidację, antyspam, privacy, retencję i potwierdzenie wysłania"
+      ],
+      "acceptance": "Wysyłka działa end-to-end, pliki prywatne i ograniczone, błędy obsługiwane; testy E2E.",
+      "owner_approval_required": true,
+      "status": "PARTIAL",
+      "implementation_result": "Dodano ilość/materiał/odbiór i obsługę endpointu, ale brak backendu/storage/sekretów; fallback mailto uczciwie opisany.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-020",
+      "title": "Opcjonalny kalkulator ceny: discovery, NIE implementacja w ciemno",
+      "category": "ZAAWANSOWANE",
+      "priority": "P3",
+      "effort": "XL",
+      "depends_on": [
+        "SEO-019"
+      ],
+      "references": [
+        "05_TECH/spec-kalkulator-faza-2.md"
+      ],
+      "implementation": [
+        "Zacznij od research estimacji z Bambu Studio i reguł ceny",
+        "Rozdziel orientacyjny koszt od oferty handlowej",
+        "Wymagana akceptacja polityki cen i obsługiwanych formatów"
+      ],
+      "acceptance": "Dokument decyzji z kosztami i ryzykami, bez mylącej wyceny online.",
+      "owner_approval_required": true,
+      "status": "DEFERRED",
+      "implementation_result": "Kalkulator był opcjonalny (osobna faza); brak danych kosztowych i wyceny materiałów, nie wprowadzono fikcyjnych stawek.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-021",
+      "title": "Analytics: zdarzenia i śledzenie konwersji",
+      "category": "POMIARY",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-019"
+      ],
+      "references": [
+        "05_TECH/pomiary.md"
+      ],
+      "implementation": [
+        "Sprawdź zgodę cookies; nie wysyłaj nazw klientów i plików jako event params",
+        "Monitoruj form_start, upload_success, quote_submit_success, mailto_click",
+        "Zrób baseline GSC i raport po 30/60/90 dniach"
+      ],
+      "acceptance": "Zdarzenia testowe bez PII, raport waliduje rzeczywiste przejścia.",
+      "owner_approval_required": true,
+      "status": "PARTIAL",
+      "implementation_result": "Dodano zdarzenia quote_email_intent i quote_request_confirmed wyłącznie gdy jest aktywne gtag; brak GA4/GSC.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-022",
+      "title": "Dostępność WCAG / responsywność",
+      "category": "UX",
+      "priority": "P2",
+      "effort": "M",
+      "depends_on": [
+        "SEO-003",
+        "SEO-019"
+      ],
+      "references": [
+        "04_UI/zalozenia-ui.md"
+      ],
+      "implementation": [
+        "Audit keyboard, focus, kontrast, label i error handling",
+        "Sprawdź formularz 320/375/768/1440 px",
+        "Respektuj prefers-reduced-motion"
+      ],
+      "acceptance": "Brak blokad obsługi klawiaturą, widoczne błędy, czytelne UI.",
+      "owner_approval_required": false,
+      "status": "PARTIAL",
+      "implementation_result": "Poprawiono semantykę, klawiaturę, focus, responsive i reduced-motion; brak pełnego audytu czytnikiem i mobile w realnej przeglądarce.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-023",
+      "title": "Google Business Profile, dane lokalne, autentyczne opinie",
+      "category": "OFF_SITE",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-004"
+      ],
+      "references": [
+        "06_QA/manual-owner-tasks.md"
+      ],
+      "implementation": [
+        "Nie twórz ani nie edytuj wizytówki automatycznie bez danych i dostępu",
+        "Sprawdź kwalifikowalność GBP, zgodność obszaru obsługi, zdjęć i godzin",
+        "Zbieraj tylko autentyczne, niezachęcane nagrodą opinie"
+      ],
+      "acceptance": "Właściciel potwierdził zgodne z zasadami GBP i publiczne dane.",
+      "owner_approval_required": true,
+      "status": "BLOCKED_OWNER",
+      "implementation_result": "Profil Google, dane firmowe i opinie wymagają dostępu i autentycznych danych właściciela; nie symulowano wizytówki.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-024",
+      "title": "Publikacja etapowa, QA i pomiar SEO",
+      "category": "QA",
+      "priority": "P0",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "06_QA/qa-checklist.md",
+        "06_QA/manual-owner-tasks.md"
+      ],
+      "implementation": [
+        "Użyj feature branch/PR i preview channel Firebase",
+        "Sprawdź smoke test, noindex na preview, brak zmian w innych usługach",
+        "Deploy production WYŁĄCZNIE po zgodzie właściciela"
+      ],
+      "acceptance": "PR z diffem, checklista testów i instrukcja roll-back; brak samodzielnego deploya.",
+      "owner_approval_required": true,
+      "status": "BLOCKED_ENV",
+      "implementation_result": "139 testów generatora statycznego i transpile TSX zaliczone. Build/deploy/realna przeglądarka/GSC po npm ci w lokalnym środowisku.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    },
+    {
+      "id": "SEO-025",
+      "title": "Nowe logo i favicon 3DPrintMe",
+      "category": "DESIGN",
+      "priority": "P1",
+      "effort": "M",
+      "depends_on": [
+        "SEO-001"
+      ],
+      "references": [
+        "DESIGN_REFERENCES/logo-guidelines.md"
+      ],
+      "implementation": [
+        "Wykonać nowe logo SVG i PNG odpowiadające palecie witryny",
+        "Dodać favicon i wariant na ciemne tło",
+        "Podmienić logo w kodzie"
+      ],
+      "acceptance": "Gotowe zasoby i podmiana w nagłówku, stopce, favicon.",
+      "owner_approval_required": true,
+      "status": "DONE",
+      "implementation_result": "Nowe autorskie logo SVG/PNG, wariant ciemny, ikona i favicon w public/img; podłączone w JSX i stronach statycznych.",
+      "last_reviewed": "2026-10-27",
+      "deployed": false
+    }
+  ],
+  "build_validation": "BLOCKED_ENV npm ci DNS EAI_AGAIN",
+  "static_validation": "PASS 139 checks; TSX transpile syntax PASS"
+}

@@ -1,3 +1,9 @@
+# AKTUALIZACJA FORMULARZY – aktualna instrukcja: `FIREBASE_FORMULARZE_SETUP.md`
+
+Do projektu dodano dwa osobne formularze oraz kod backendu Firebase w `functions/`. Poniższe informacje mogły dotyczyć poprzedniej wersji; konfigurację połączeń i wdrożenie wykonuj według **FIREBASE_FORMULARZE_SETUP.md**. Oryginalne style CSS pozostają niezmienione.
+
+---
+
 # Twoja strona usług druku 3D
 
 Projekt oparty na Landy React Template (licencja MIT w LICENSE). Zachowano React, TypeScript, lokalne fonty i paletę szablonu. Nowy układ korzysta z lekkiego CSS, bez ładowania bibliotek UI szablonu.

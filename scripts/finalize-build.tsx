@@ -3,6 +3,7 @@ import path from 'node:path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import articles from '../content/articles.json';
+import servicePages from '../content/service-pages.json';
 import App from '../src/App';
 import { company } from '../src/config';
 
@@ -34,6 +35,10 @@ function metadataTags(url: string, image: string) {
   return `<link rel="canonical" href="${safeUrl}"><meta property="og:url" content="${safeUrl}"><meta property="og:image" content="${safeImage}"><meta name="twitter:image" content="${safeImage}">`;
 }
 
+function jsonLdTag(value: unknown) {
+  return `<script type="application/ld+json">${JSON.stringify(value).replaceAll('<', '\\u003c')}</script>`;
+}
+
 function articleJsonLd(url: string, title: string, description: string, image: string) {
   const json = JSON.stringify({
     '@context': 'https://schema.org',
@@ -58,28 +63,62 @@ async function main() {
 
   if (siteUrl) {
     const homeUrl = `${siteUrl}/`;
-    const homeImage = `${siteUrl}/img/czesci-techniczne-3d.webp`;
-    indexHtml = addHeadTags(indexHtml, metadataTags(homeUrl, homeImage));
+    const homeImage = `${siteUrl}/img/logo-new.png`;
+    indexHtml = addHeadTags(indexHtml, metadataTags(homeUrl, homeImage) +
+      jsonLdTag({
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'Organization', '@id': `${siteUrl}/#organization`, name: company.name, url: siteUrl, logo: homeImage, email: company.email, sameAs: [company.trustpilotUrl], areaServed: ['Kraków', 'Polska'] },
+          { '@type': 'WebSite', '@id': `${siteUrl}/#website`, name: company.name, url: siteUrl, inLanguage: 'pl-PL', publisher: { '@id': `${siteUrl}/#organization` } },
+          { '@type': 'Service', name: 'Druk 3D na zamówienie w Krakowie', serviceType: 'Druk 3D FDM', provider: {'@id': `${siteUrl}/#organization`}, areaServed: { '@type': 'City', name: 'Kraków' } },
+        ],
+      }));
 
     const locations = [
       '/',
       '/poradnik/',
       ...articles.map(article => `/poradnik/${article.slug}.html`),
+      ...servicePages.filter(item => !item.slug.startsWith('realizacje')).map(item => `/${item.slug}/`),
     ];
 
     for (const article of articles) {
       const articlePath = `/poradnik/${article.slug}.html`;
       const articleUrl = `${siteUrl}${articlePath}`;
-      const imageName = article.slug === 'jak-przygotowac-plik' ? 'czesci-techniczne-3d'
-        : article.slug === 'pla-petg-tpu' ? 'odbojniki-3d'
-          : article.slug === 'ile-kosztuje-druk-3d' ? 'mechanizmy-3d'
-            : article.slug === 'zastosowania-druku-3d' ? 'organizery-3d' : 'klipsy-3d';
+      const articleCoverImages: Record<string,string> = {
+        'jak-przygotowac-plik': 'czesci-techniczne-3d',
+        'druk-3d-w-krakowie-jak-zamowic': 'czesci-techniczne-3d',
+        'pla-petg-tpu': 'odbojniki-3d',
+        'ile-kosztuje-druk-3d': 'mechanizmy-3d',
+        'zastosowania-druku-3d': 'organizery-3d',
+        'druk-3d-male-serie': 'klipsy-3d',
+        'druk-3d-ze-zdjecia-szkicu': 'czesci-techniczne-3d',
+        'wytrzymalosc-druku-3d-kierunek-warstw': 'uchwyty-3d',
+        'pasowanie-tolerancje-druk-3d': 'mechanizmy-3d',
+      };
+      const imageName = articleCoverImages[article.slug] ?? 'czesci-techniczne-3d';
       const articleImage = `${siteUrl}/img/${imageName}.webp`;
       const filePath = path.join(buildDirectory, articlePath);
       const html = await readFile(filePath, 'utf8');
       const tags = metadataTags(articleUrl, articleImage)
         + articleJsonLd(articleUrl, article.title, article.description, articleImage);
       await writeFile(filePath, addHeadTags(html, tags));
+    }
+
+    for (const item of servicePages) {
+      const location = `/${item.slug}/`;
+      const articlePath = path.join(buildDirectory, item.slug, 'index.html');
+      const html = await readFile(articlePath, 'utf8');
+      const url = `${siteUrl}${location}`;
+      const crumbs = item.slug.includes('/')
+        ? [{ '@type': 'ListItem', position: 1, name: 'Strona główna', item: homeUrl },
+           { '@type': 'ListItem', position: 2, name: 'Realizacje', item: `${siteUrl}/realizacje/` },
+           { '@type': 'ListItem', position: 3, name: item.title.split(' | ')[0], item: url }]
+        : [{ '@type': 'ListItem', position: 1, name: 'Strona główna', item: homeUrl },
+           { '@type': 'ListItem', position: 2, name: item.title.split(' | ')[0], item: url }];
+      const tags = metadataTags(url, homeImage) + jsonLdTag({
+        '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs,
+      });
+      await writeFile(articlePath, addHeadTags(html, tags));
     }
 
     const guidePath = path.join(buildDirectory, 'poradnik', 'index.html');

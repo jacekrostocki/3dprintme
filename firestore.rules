@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Zgłoszenia i limity dostępne wyłącznie przez Firebase Admin SDK w Cloud Functions.
+    match /website_inquiries/{docId} { allow read, write: if false; }
+    match /inquiry_rate_limits/{docId} { allow read, write: if false; }
+    // UWAGA: dla pozostałych kolekcji projektu reguły dopasuj do dotychczasowego stanu.
+  }
+}

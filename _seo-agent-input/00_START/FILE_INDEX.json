@@ -1,0 +1,261 @@
+{
+  "files": [
+    {
+      "path": "00_START/INSTRUKCJA_DLA_COPILOTA.md",
+      "bytes": 3366
+    },
+    {
+      "path": "00_START/README.md",
+      "bytes": 2669
+    },
+    {
+      "path": "01_TASKS/STATUS_IMPLEMENTACJI.md",
+      "bytes": 322
+    },
+    {
+      "path": "01_TASKS/tasks.json",
+      "bytes": 17062
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-001.md",
+      "bytes": 1085
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-002.md",
+      "bytes": 1163
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-003.md",
+      "bytes": 1122
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-004.md",
+      "bytes": 1066
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-005.md",
+      "bytes": 1058
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-006.md",
+      "bytes": 1125
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-007.md",
+      "bytes": 1095
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-008.md",
+      "bytes": 1119
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-009.md",
+      "bytes": 1089
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-010.md",
+      "bytes": 1118
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-011.md",
+      "bytes": 1165
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-012.md",
+      "bytes": 1020
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-013.md",
+      "bytes": 991
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-014.md",
+      "bytes": 976
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-015.md",
+      "bytes": 1007
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-016.md",
+      "bytes": 1057
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-017.md",
+      "bytes": 1019
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-018.md",
+      "bytes": 1025
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-019.md",
+      "bytes": 1193
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-020.md",
+      "bytes": 1072
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-021.md",
+      "bytes": 1062
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-022.md",
+      "bytes": 987
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-023.md",
+      "bytes": 1093
+    },
+    {
+      "path": "01_TASKS/tickets/SEO-024.md",
+      "bytes": 1077
+    },
+    {
+      "path": "02_CONTENT/artykuly/jak-przygotowac-stl.md",
+      "bytes": 3725
+    },
+    {
+      "path": "02_CONTENT/artykuly/od-czego-zalezy-cena.md",
+      "bytes": 2902
+    },
+    {
+      "path": "02_CONTENT/artykuly/pla-petg-tpu.md",
+      "bytes": 4247
+    },
+    {
+      "path": "02_CONTENT/meta/audyt-claimow.md",
+      "bytes": 1215
+    },
+    {
+      "path": "02_CONTENT/meta/metadane.json",
+      "bytes": 3168
+    },
+    {
+      "path": "02_CONTENT/strony/case-ikea-raskog.md",
+      "bytes": 4256
+    },
+    {
+      "path": "02_CONTENT/strony/czesci-zamienne.md",
+      "bytes": 1908
+    },
+    {
+      "path": "02_CONTENT/strony/faq.md",
+      "bytes": 1925
+    },
+    {
+      "path": "02_CONTENT/strony/home.md",
+      "bytes": 3235
+    },
+    {
+      "path": "02_CONTENT/strony/kontakt-lokalny.md",
+      "bytes": 1099
+    },
+    {
+      "path": "02_CONTENT/strony/male-serie.md",
+      "bytes": 1206
+    },
+    {
+      "path": "02_CONTENT/strony/projektowanie.md",
+      "bytes": 1350
+    },
+    {
+      "path": "02_CONTENT/strony/prototypowanie.md",
+      "bytes": 1480
+    },
+    {
+      "path": "02_CONTENT/strony/realizacje.md",
+      "bytes": 1067
+    },
+    {
+      "path": "02_CONTENT/strony/wycena.md",
+      "bytes": 1480
+    },
+    {
+      "path": "03_ASSETS/manifest-zdjec.json",
+      "bytes": 2549
+    },
+    {
+      "path": "03_ASSETS/portfolio_do_weryfikacji/raskog-montaz-zrodlo.jpg",
+      "bytes": 286305
+    },
+    {
+      "path": "03_ASSETS/portfolio_do_weryfikacji/raskog-przed-po-zrodlo.jpg",
+      "bytes": 278063
+    },
+    {
+      "path": "03_ASSETS/portfolio_do_weryfikacji/raskog-zestaw-zrodlo.jpg",
+      "bytes": 312636
+    },
+    {
+      "path": "03_ASSETS/webp_do_weryfikacji/raskog-montaz-zrodlo.webp",
+      "bytes": 69354
+    },
+    {
+      "path": "03_ASSETS/webp_do_weryfikacji/raskog-przed-po-zrodlo.webp",
+      "bytes": 63628
+    },
+    {
+      "path": "03_ASSETS/webp_do_weryfikacji/raskog-zestaw-zrodlo.webp",
+      "bytes": 79484
+    },
+    {
+      "path": "04_UI/asset-map.json",
+      "bytes": 1121
+    },
+    {
+      "path": "04_UI/mockup-strona-glowna-formularz.png",
+      "bytes": 1552749
+    },
+    {
+      "path": "04_UI/spec-formularz.md",
+      "bytes": 1063
+    },
+    {
+      "path": "04_UI/spec-portfolio.md",
+      "bytes": 1296
+    },
+    {
+      "path": "04_UI/wireframe-sekcje.svg",
+      "bytes": 3184
+    },
+    {
+      "path": "04_UI/zalozenia-ui.md",
+      "bytes": 1068
+    },
+    {
+      "path": "05_TECH/pomiary.md",
+      "bytes": 1144
+    },
+    {
+      "path": "05_TECH/schema-snippets.json",
+      "bytes": 1553
+    },
+    {
+      "path": "05_TECH/spec-formularz.md",
+      "bytes": 3914
+    },
+    {
+      "path": "05_TECH/spec-kalkulator-faza-2.md",
+      "bytes": 1325
+    },
+    {
+      "path": "05_TECH/spec-techniczne.md",
+      "bytes": 3785
+    },
+    {
+      "path": "06_QA/manual-owner-tasks.md",
+      "bytes": 1533
+    },
+    {
+      "path": "06_QA/qa-checklist.md",
+      "bytes": 1636
+    },
+    {
+      "path": "07_REFERENCJE/zrodla-i-ograniczenia.md",
+      "bytes": 2054
+    }
+  ],
+  "task_count": 24
+}

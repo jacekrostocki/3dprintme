@@ -1,0 +1,8 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Żaden upload ani odczyt plików z przeglądarki; wyłącznie Admin SDK.
+    match /website-inquiries/{allPaths=**} { allow read, write: if false; }
+    // UWAGA: jeśli w tym samym bucketcie masz inne dane, przenieś ich reguły tutaj.
+  }
+}

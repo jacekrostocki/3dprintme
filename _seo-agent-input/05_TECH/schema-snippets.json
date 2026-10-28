@@ -1,0 +1,40 @@
+{
+  "__IMPORTANT__": "SZABLONY! NIE publikuj wartości placeholders. Oceny/recenzje/geo/hours/phone/adres tylko po potwierdzeniu. Dostosuj do stanu prawnego działalności.",
+  "organization_example": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://3dprintme.pl/#organization",
+    "name": "3DPrintMe",
+    "url": "https://3dprintme.pl/",
+    "description": "Usługi druku 3D FDM na zamówienie.",
+    "areaServed": {
+      "@type": "City",
+      "name": "Kraków"
+    }
+  },
+  "website_example": {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://3dprintme.pl/#website",
+    "url": "https://3dprintme.pl/",
+    "name": "3DPrintMe",
+    "inLanguage": "pl-PL"
+  },
+  "article_template": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "__TITLE_Z_RZECZYWISTEJ_PODSTRONY__",
+    "mainEntityOfPage": "__CANONICAL_URL__",
+    "datePublished": "__PUB_DATE_ISO__",
+    "dateModified": "__MOD_DATE_ISO_TYLKO_JEŚLI_ZNANA__",
+    "author": {
+      "@type": "Organization",
+      "name": "3DPrintMe"
+    }
+  },
+  "notes": [
+    "FAQPage markup nie gwarantuje rozszerzonego wyniku w Google; dodaj tylko gdy odpowiada faktycznej stronie i typowi dopuszczonemu przez Google.",
+    "LocalBusiness stosuj warunkowo po sprawdzeniu czy i jak opublikować dane, szczególnie adres; nie wpisuj miejsca zamieszkania automatycznie.",
+    "Nie dodawaj AggregateRating ani Review, chyba że prawidłowe i zgodne z polityką rich results oraz faktycznie widoczne."
+  ]
+}

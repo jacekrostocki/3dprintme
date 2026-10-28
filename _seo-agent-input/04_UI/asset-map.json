@@ -1,0 +1,35 @@
+{
+  "ui_visual_reference": "04_UI/mockup-strona-glowna-formularz.png",
+  "ui_visual_is_ai_generated": true,
+  "ui_visual_use": "PRIVATE INSPIRATION ONLY; NOT WEBSITE ASSET/PORTFOLIO",
+  "guides": [
+    {
+      "slot": "home.hero",
+      "content": "02_CONTENT/strony/home.md",
+      "reference": "04_UI/zalozenia-ui.md"
+    },
+    {
+      "slot": "home.portfolio",
+      "content": "02_CONTENT/strony/realizacje.md",
+      "reference": "04_UI/spec-portfolio.md",
+      "source_images": "03_ASSETS/manifest-zdjec.json"
+    },
+    {
+      "slot": "case.raskog",
+      "content": "02_CONTENT/strony/case-ikea-raskog.md",
+      "reference": "04_UI/spec-portfolio.md",
+      "source_images": "03_ASSETS/manifest-zdjec.json"
+    },
+    {
+      "slot": "quote.form",
+      "content": "02_CONTENT/strony/wycena.md",
+      "reference": "04_UI/spec-formularz.md",
+      "backend_spec": "05_TECH/spec-formularz.md"
+    },
+    {
+      "slot": "article.materials",
+      "content": "02_CONTENT/artykuly/pla-petg-tpu.md",
+      "suggested_image": "własne autentyczne zdjęcie rolek materiału; brak zweryfikowanego pliku"
+    }
+  ]
+}

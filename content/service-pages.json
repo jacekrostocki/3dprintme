@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "czesci-zamienne-druk-3d",
+    "title": "Części zamienne z druku 3D Kraków | 3DPrintMe",
+    "description": "Brakuje uchwytu, osłony lub dystansu? Zapytaj o wykonanie części zamiennej metodą FDM na zamówienie.",
+    "body": "<h1>Druk 3D części zamiennych w Krakowie</h1>\n<p>Nie każda plastikowa część musi być produkowana w tysiącach egzemplarzy. Druk 3D przydaje się, gdy brakuje osłony, uchwytu, dystansu, organizera lub nietypowego elementu użytkowego, a gotowy zamiennik jest trudno dostępny.</p>\n<h2>Jakie elementy warto rozważyć?</h2>\n<p>Przykłady to pokrętła, klipsy, uchwyty, zaślepki, obudowy urządzeń i elementy montażowe. Dla każdej części trzeba osobno ocenić materiał, kierunek warstw, grubość ścianek, sposób mocowania, obciążenia i temperaturę pracy. Nie każdy oryginalny element można bezpiecznie zastąpić drukiem FDM.</p>\n<h2>Co przygotować do zapytania?</h2>\n<p>Podaj orientacyjne wymiary, kilka zdjęć uszkodzonego elementu i miejsca montażu, informację o sposobie pracy oraz ewentualny plik STL/STEP. Jeśli element ma pracować w pobliżu ciepła, promieni UV, płynów lub dużych obciążeń, napisz o tym od razu.</p>\n<h2>Kiedy druk FDM może nie być odpowiedni?</h2>\n<p>Nie podejmujemy się bez osobnej oceny zastępowania drukiem elementów krytycznych dla bezpieczeństwa: hamulców, układów podtrzymujących osoby, części instalacji gazowych, elektrycznych pod napięciem czy układów, których awaria grozi obrażeniami. W takich zastosowaniach wymagane są właściwe procesy projektowe i badania.</p>\n<h2>Od pytania do części</h2>\n<p>Opisujesz potrzebę, sprawdzamy możliwość wykonania, ustalamy projekt i materiał, a dopiero po akceptacji ceny realizujemy zlecenie. <a href=\"/wycena/\">Poproś o indywidualną wycenę</a>. Przeczytaj także <a href=\"/poradnik/pla-petg-tpu.html\">jak dobrać materiał do wydruku</a>.</p>\n",
+    "type": "service"
+  },
+  {
+    "slug": "prototypowanie-3d",
+    "title": "Prototypowanie 3D Kraków | 3DPrintMe",
+    "description": "Druk prototypów FDM do sprawdzenia geometrii, ergonomii i dopasowania przed następną iteracją projektu.",
+    "body": "<h1>Prototypowanie 3D w Krakowie</h1>\n<p>Zanim zainwestujesz w większą serię, warto sprawdzić projekt w fizycznej formie. Prototyp drukowany w technologii FDM umożliwia ocenę wymiarów, chwytu, ułożenia otworów, montażu i dostępności przestrzeni pod podzespoły.</p>\n<h2>Dlaczego najpierw prototyp?</h2>\n<p>Model na ekranie CAD nie zawsze pokazuje realne problemy z ergonomią i montażem. Wydruk pozwala przymierzyć część do urządzenia, sprawdzić zaczepy lub szybko porównać dwa warianty. Jest to test projektowy, a nie automatyczne potwierdzenie właściwości końcowego produktu.</p>\n<h2>Proponowany proces</h2>\n<ol>\n<li>Przesyłasz plik i opis funkcji elementu. 2. Ustalamy kluczowe wymiary i miejsca wymagające dopasowania. 3. Dobieramy materiał i ustawienia do celu prototypu. 4. Po wydruku oceniasz model i zgłaszasz uwagi. Kolejna iteracja stanowi osobne uzgodnienie zakresu i ceny.</li>\n</ol>\n<h2>Materiały</h2>\n<p>PLA sprawdza się w modelach demonstracyjnych i kontrolnych, PETG bywa użyteczny przy bardziej obciążonych detalach, a TPU do prób elastycznych mocowań. Wybór zależy od funkcji modelu. <a href=\"/poradnik/pla-petg-tpu.html\">Przeczytaj poradnik materiałowy</a>.</p>\n<p><a href=\"/wycena/\">Prześlij plik do oceny możliwości druku</a>.</p>\n",
+    "type": "service"
+  },
+  {
+    "slug": "druk-3d-male-serie",
+    "title": "Druk 3D małe serie Kraków | 3DPrintMe",
+    "description": "Druk FDM niewielkich partii części. Wyślij model i zapytaj o możliwość wykonania krótkiej serii.",
+    "body": "<h1>Druk 3D małoseryjny na zamówienie</h1>\n<p>Potrzebujesz kilku lub kilkunastu podobnych części, ale zakup formy wtryskowej nie jest uzasadniony? Druk 3D FDM może być odpowiednią drogą do przetestowania krótkiej serii elementów użytkowych lub prototypowych.</p>\n<h2>Co ma wpływ na powtarzalność?</h2>\n<p>Geometria, materiał, orientacja druku, warunki pracy i kontrola wymiarów wpływają na rezultat. W przypadku pasowań lub klipsów warto wcześniej zatwierdzić próbkę. Dla kolejnych sztuk istotne są tolerancje i sposób weryfikacji, nie tylko wygląd zewnętrzny.</p>\n<h2>Jak opisać zlecenie seryjne?</h2>\n<p>Prześlij plik modelu, potrzebną liczbę sztuk, wybrane kolory, wymagania wymiarowe i termin orientacyjny. Jeśli są różne wersje części, oznacz je numerami. Nie deklarujemy gotowego terminu ani rabatu bez sprawdzenia modelu i dostępności materiału.</p>\n<p><a href=\"/wycena/\">Poproś o wycenę krótkiej serii</a>.</p>\n",
+    "type": "service"
+  },
+  {
+    "slug": "projektowanie-modeli-3d",
+    "title": "Projektowanie modeli 3D Kraków | 3DPrintMe",
+    "description": "Nie masz modelu STL? Zapytaj o przygotowanie geometrii na podstawie szkicu lub wymiarów.",
+    "body": "<h1>Projektowanie modeli 3D do druku</h1>\n<p>Gotowy model STL nie jest jedynym punktem startowym. Jeśli dysponujesz szkicem, zdjęciami i wymiarami elementu, można rozważyć opracowanie prostego modelu CAD lub dostosowanie istniejącej geometrii do druku. Każdy przypadek wymaga ustalenia zakresu, praw do materiałów wejściowych i kosztu przygotowania projektu.</p>\n<h2>Co przyspiesza przygotowanie modelu?</h2>\n<p>Przydatne są zdjęcia części z kilku stron, rysunek z wymiarami, informacja o mocowaniu i środowisku pracy oraz pliki źródłowe (jeśli istnieją). Uzgodnij też, czy potrzebujesz samego wydruku, modelu edytowalnego CAD czy pliku STL.</p>\n<h2>Etapy</h2>\n<p>Krótki opis problemu → ocena wykonalności → ustalenie modelowania i liczby poprawek → przygotowanie prototypu → weryfikacja dopasowania.</p>\n<p><a href=\"/wycena/\">Zapytaj o możliwość opracowania modelu</a>.</p>\n",
+    "type": "service"
+  },
+  {
+    "slug": "realizacje",
+    "title": "Realizacje druku 3D w Krakowie | 3DPrintMe",
+    "description": "Poznaj dokumentowane projekty druku 3D, w tym autorski odbojnik z TPU do wózka IKEA RÅSKOG.",
+    "body": "<h1>Realizacje druku 3D</h1>\n<p>Najlepiej pokazać możliwości druku 3D na konkretnym problemie i przebiegu pracy. Publikujemy tu projekty, dla których mamy dokumentację oraz zgodę na prezentację.</p>\n<h2>Odbojnik z TPU do wózka IKEA RÅSKOG</h2>\n<p>Celem projektu było opracowanie elastycznej osłony w okolicy narożnika dolnej ramy wózka. Prace obejmowały analizę mocowania, dobór TPU i dopasowywanie geometrii elementu do konstrukcji. <a href=\"/realizacje/odbojnik-ikea-raskog/\">Zobacz case study</a>.</p>\n",
+    "type": "portfolio"
+  },
+  {
+    "slug": "realizacje/odbojnik-ikea-raskog",
+    "title": "Odbojnik TPU do IKEA RÅSKOG — projekt | 3DPrintMe",
+    "description": "Zobacz proces projektowania i prób dopasowania elastycznego odbojnika do wózka IKEA RÅSKOG.",
+    "body": "<h1>Odbojnik do wózka IKEA RÅSKOG — od problemu do wydruku TPU</h1>\n<p>Nie każdy użyteczny projekt druku 3D musi być skomplikowany. Czasem wystarczy drobny detal, którego trudno szukać w typowej ofercie sklepowej. Tak powstała koncepcja elastycznej osłony narożnika dolnej części wózka IKEA RÅSKOG.</p>\n<h2>Problem: kontakt metalowej konstrukcji z otoczeniem</h2>\n<p>Przy przesuwaniu wózka jego elementy w pobliżu kół mogą mieć kontakt z listwą przypodłogową, meblem lub ścianą. Założeniem projektu było opracowanie nakładanej osłony, która ograniczy bezpośredni kontakt twardego metalu z inną powierzchnią. Efekt zależy od sposobu montażu i warunków użytkowania; nie jest to gwarancja ochrony przed każdym uderzeniem.</p>\n<h2>Wymagania konstrukcyjne</h2>\n<p>Osłona miała dopasować się do narożnika, pozostać możliwie niewielka i być wygodna w montażu. Ważnym elementem projektu było opracowanie geometrii mocowania: jej kształt musi odpowiadać rzeczywistym wymiarom ramy, tolerancjom druku i sprężystości materiału. Rozważano warianty wsuwane oraz rozwiązania zatrzaskowe.</p>\n<h2>Dlaczego TPU 95A?</h2>\n<p>Wydruk z TPU 95A ma większą podatność na odkształcenie niż klasyczne, sztywne PLA lub PETG. To użyteczne w nakładkach i odbojnikach, które nie powinny być całkowicie sztywne. Twardość 95A nie oznacza jednak bardzo miękkiej gumy. Kształt ścianki, grubość i sposób podparcia mają istotny wpływ na zachowanie gotowej części.</p>\n<h2>Projektowanie CAD i dopasowanie mocowania</h2>\n<p>Projekt rozwijano w środowisku CAD (Fusion 360). Prototypowanie obejmowało analizę mocowania, geometrii narożnika i możliwości wydruku z elastycznego filamentu. Takie iteracje są typową częścią pracy nad funkcjonalnym detalem: pierwszy model służy do sprawdzenia założeń, a niekoniecznie do końcowego użytku.</p>\n<p>Podczas testów pojawiały się problemy ze stabilnością lub dopasowaniem niektórych wariantów mocowania . To cenna informacja projektowa — przy elastycznej części poprawny wymiar geometryczny nie zawsze oznacza właściwą siłę zacisku.</p>\n<h2>Rezultat i ograniczenia</h2>\n<p>Efektem prac jest projekt zestawu osłon przeznaczonych do montażu w narożnikach dolnej części wózka. Szczegóły bieżącego wariantu i dopasowania należy uzgodnić dla konkretnego zastosowania. Nie deklarujemy parametrów ochrony przed uderzeniem bez odpowiednich testów.</p>\n<h2>Co ta realizacja pokazuje?</h2>\n<p>Na przykładzie niewielkiego akcesorium widać pełną ścieżkę pracy: rozpoznanie praktycznego problemu, dobór tworzywa, zaprojektowanie dopasowania, wydruk i ocenę prototypu. Ten sam proces ma zastosowanie przy uchwytach, zaślepkach, stopkach i obudowach na indywidualne zamówienie.</p>\n<p><strong>Masz część, której nie możesz kupić w gotowej wersji?</strong> <a href=\"/#kontakt\">Wyślij zapytanie o druk lub przygotowanie projektu</a>.</p>\n<blockquote>\n<p>Informacja o znakach towarowych: IKEA i RÅSKOG są znakami/nazwami należącymi do ich właścicieli. Opis dotyczy niezależnie przygotowanego akcesorium i nie sugeruje współpracy ani autoryzacji producenta wózka.</p>\n</blockquote>\n",
+    "type": "portfolio"
+  },
+  {
+    "slug": "kontakt",
+    "title": "Kontakt — druk 3D w Krakowie | 3DPrintMe",
+    "description": "Skontaktuj się z 3DPrintMe i zapytaj o druk części użytkowej, prototypu albo małej serii.",
+    "body": "<h1>Kontakt — druk 3D Kraków</h1>\n<p>Masz plik STL, szkic, uszkodzoną część do odtworzenia albo pomysł na prototyp? Napisz, co chcesz wykonać, z jakiego materiału (jeśli wiesz), w jakiej ilości i w jakich warunkach element będzie pracował.</p>\n<p><strong>Kontakt e-mail:</strong> kontakt.3dprintme@gmail.com. <a href=\"/#pytania\">Przejdź do formularza kontaktowego</a>.</p>\n<p><strong>Obsługiwany obszar:</strong> Kraków oraz zlecenia wysyłkowe z innych regionów Polski. <strong>Odbiór osobisty:</strong> po wcześniejszym uzgodnieniu.</p>\n",
+    "type": "service"
+  },
+  {
+    "slug": "wycena",
+    "title": "Wycena druku 3D w Krakowie | 3DPrintMe",
+    "description": "Opisz swój model lub pomysł i uzyskaj indywidualną wycenę druku 3D w Krakowie. Kontakt e-mail z możliwością dołączenia pliku.",
+    "body": "<h1>Wyceń druk 3D na zamówienie</h1>\n<p>Prześlij model lub krótko opisz pomysł. Do rzetelnej wyceny potrzebujemy przede wszystkim wymiarów, zastosowania, liczby sztuk i informacji o ważnych pasowaniach. Gdy nie wiesz, który materiał wybrać, opisz warunki pracy części.</p>\n<p>Na stronie głównej znajdziesz dedykowany formularz wyceny z polem do dodania pliku STL/3MF. Po skonfigurowaniu bezpiecznego backendu prześle on plik automatycznie; do tego czasu należy dołączyć go do wiadomości w programie pocztowym. <a href=\"/#kontakt\">Przejdź do kontaktu i formularza</a>.</p>\n",
+    "type": "service"
+  }
+]

@@ -1,0 +1,13 @@
+const test=require("node:test");
+const assert=require("node:assert/strict");
+const {validateFields,validAttachment,safeName,MAX_FILE}=require("../validation");
+const base={formType:"quote",email:"jan@example.com",message:"Potrzebuję uchwytu 25 x 30 mm",quantity:"4",material:"PETG",delivery:"Wysyłka"};
+test("valid quote",()=>assert.equal(validateFields(base).quantity,4));
+test("valid contact",()=>assert.equal(validateFields({formType:"contact",email:"jan@example.com",message:"Czy jest odbiór?"}).type,"contact"));
+test("reject invalid email",()=>assert.throws(()=>validateFields({...base,email:"bad"})));
+test("reject invalid type",()=>assert.throws(()=>validateFields({...base,formType:"admin"})));
+test("reject oversized file",()=>assert.throws(()=>validAttachment("file.stl",Buffer.alloc(MAX_FILE+1))));
+test("reject renamed executable",()=>assert.throws(()=>validAttachment("fake.stl",Buffer.from("MZ executable"))));
+test("accept valid binary stl",()=>{const b=Buffer.alloc(84+50);b.writeUInt32LE(1,80);assert.equal(validAttachment("model.stl",b),"stl");});
+test("accept 3mf zip signature",()=>assert.equal(validAttachment("model.3mf",Buffer.from([0x50,0x4b,0x03,0x04,1,2,3])),"3mf"));
+test("sanitize filename",()=>assert.equal(safeName("../../file name.stl"),"file_name.stl"));
